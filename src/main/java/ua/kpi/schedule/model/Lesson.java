@@ -20,7 +20,7 @@ public class Lesson implements Serializable {
     @Id
     @GeneratedValue
     @Column(name="LESSON_ID")
-    private int LESSON_ID;
+    private int idLesson;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "STUDENT_GROUP_ID")

@@ -21,7 +21,7 @@ import java.util.List;
 public class TimeSlot {
     @Id
     @GeneratedValue
-    private int TIMESLOT_ID;
+    private int idTimeSlot;
     private int timeslot_Number;
     private String startTime;
     private String endTime;

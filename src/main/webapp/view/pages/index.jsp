@@ -25,7 +25,6 @@
 </style>
 <body>
 <div id="content">
-<a class="back" href=""></a>
 <span class="scroll"></span>
 
 <h1>Розклад</h1>

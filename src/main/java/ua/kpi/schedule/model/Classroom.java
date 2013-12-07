@@ -23,7 +23,7 @@ public class Classroom implements Serializable{
     @Id
     @GeneratedValue
     @Column(name="CLASSROOM_ID")
-    private int CLASSROOM_ID;
+    private int idClassroom;
     private String address;
     private String type;
     private String number;

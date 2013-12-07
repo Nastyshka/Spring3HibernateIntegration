@@ -21,7 +21,7 @@ public class Subject implements Serializable{
     @Id
     @GeneratedValue
     @Column(name = "SUBJECT_ID")
-    private int SUBJECT_ID;
+    private int idSubject;
     private String nameSubject;
     private int amountLections;
     private int amountPractices;

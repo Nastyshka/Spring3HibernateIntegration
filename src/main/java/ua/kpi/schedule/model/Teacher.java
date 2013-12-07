@@ -21,7 +21,7 @@ public class Teacher extends User {
     @Id
     @GeneratedValue
     @Column(name = "TEACHER_ID")
-    protected int TEACHER_ID;
+    protected int idTeacher;
 
     private String academicTitle;
 

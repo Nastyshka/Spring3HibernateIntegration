@@ -22,7 +22,7 @@ public class Student extends User implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "STUDENT_ID")
-    protected int STUDENT_ID;
+    protected int idStudent;
 
     @ManyToOne
     @JoinColumn(name = "STUDENTGROUP_ID")

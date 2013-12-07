@@ -43,10 +43,6 @@ public class GenericDAO <T>{
     }
     @Transactional
     public List<T> getAll (){
-//        String queryName = type.getSimpleName() + ".getAll";
-//        List <T> result = eManager.getCurrentSession().createQuery(queryName, this.type).getResultList();
-//        System.out.printf("Loaded %d %s(s)\n", result.size(), type.getSimpleName());
-//        return result;
         final Session session = eManager.getCurrentSession();
         final Criteria crit = session.createCriteria(type);
         return crit.list();

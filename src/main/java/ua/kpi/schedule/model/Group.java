@@ -22,7 +22,7 @@ public class Group implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "STUDENT_GROUP_ID")
-    protected int STUDENT_GROUP_ID;
+    protected int idStudentGroup;
 
     private String nameGroup;
 

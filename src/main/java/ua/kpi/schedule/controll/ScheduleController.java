@@ -1,14 +1,14 @@
 package ua.kpi.schedule.controll;
 
-import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.kpi.schedule.dao.GroupDAO;
-import ua.kpi.schedule.dao.SubjectDAO;
-import ua.kpi.schedule.dao.TeacherDAO;
+import ua.kpi.schedule.model.Group;
+import ua.kpi.schedule.model.Subject;
+import ua.kpi.schedule.model.Teacher;
+import ua.kpi.schedule.processors.DataProcessor;
 
 /**
  * @author anastasiyar
@@ -16,14 +16,10 @@ import ua.kpi.schedule.dao.TeacherDAO;
 
 @Controller
 public class ScheduleController {
-    @Autowired
-    private TeacherDAO teacherDAO;
 
     @Autowired
-    private GroupDAO groupDAO;
+    private DataProcessor dataProcessor;
 
-    @Autowired
-    private SubjectDAO subjectDAO;
     /**
      * Controller method for home page
      * @return ModelAndView
@@ -38,16 +34,53 @@ public class ScheduleController {
      * @return ModelAndView
      */
     @RequestMapping("/list.do")
-    public ModelAndView foundTeachers () {
+    public ModelAndView foundAllData () {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
-        modelAndView.addObject("foundTeachers", teacherDAO.getAll());
+        modelAndView.addObject("foundData", dataProcessor.getAllData());
+        return modelAndView;
+    }
+
+    @RequestMapping("/profileSubject.do")
+    public ModelAndView profileSubject (@RequestParam(value = "idSubject", required = false) Integer idSubject) {
+        ModelAndView modelAndView = new ModelAndView("/view/pages/profileSubject.jsp");
+        if (idSubject != null){
+            modelAndView.addObject("foundSubject", dataProcessor.findSubject(idSubject));
+        } else {
+            modelAndView.addObject("foundSubject", new Subject());
+        }
         return modelAndView;
     }
 
     @RequestMapping("/profileTeacher.do")
-    public ModelAndView profileTeacher (@RequestParam int idTeacher) {
+    public ModelAndView profileTeacher (@RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
         ModelAndView modelAndView = new ModelAndView("/view/pages/profileTeacher.jsp");
-        modelAndView.addObject("foundTeachers", teacherDAO.find(idTeacher));
+        if (idTeacher != null){
+            modelAndView.addObject("foundTeacher", dataProcessor.findTeacher(idTeacher));
+        } else {
+            modelAndView.addObject("foundTeacher", new Teacher());
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping("/profileClassroom.do")
+    public ModelAndView profileClassroom (@RequestParam(value = "idClassroom", required = false) Integer idClassroom) {
+        ModelAndView modelAndView = new ModelAndView("/view/pages/profileClassroom.jsp");
+        if (idClassroom != null){
+            modelAndView.addObject("foundClassroom", dataProcessor.findClassroom(idClassroom));
+        } else {
+            modelAndView.addObject("foundClassroom", new Subject());
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping("/profileGroup.do")
+    public ModelAndView profileGroup (@RequestParam(value = "idGroup", required = false) Integer idGroup) {
+        ModelAndView modelAndView = new ModelAndView("/view/pages/profileGroup.jsp");
+        if (idGroup != null){
+            modelAndView.addObject("foundGroup", dataProcessor.findGroup(idGroup));
+        } else{
+            modelAndView.addObject("foundGroup", new Group());
+        }
         return modelAndView;
     }
 }
