@@ -17,16 +17,11 @@
 
 </style>
 <body>
-<div id="header">
-    <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="90" width="90"/></a>КПИяшка</h1>
-    <hr>
-</div>
 <div id="content">
     <a class="back" href=""></a>
     <span class="scroll"></span>
 
-    <h1>Додати новий предмет</h1>
+    <h1>Створити профайл викладача</h1>
 
 </div>
 

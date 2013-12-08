@@ -18,7 +18,7 @@
 
 <div id="header">
     <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="90" width="90"/></a>КПИяшка</h1>
+    <h1><a href="/timetable/home.do" title="Start page"><img src="<%--${pageContext.request.contextPath}/view/img--%>/logo.jpg" height="90" width="90"/></a>КПИяшка</h1>
     <hr>
 </div>
 
