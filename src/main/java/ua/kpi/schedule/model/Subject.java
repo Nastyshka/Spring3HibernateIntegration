@@ -12,8 +12,6 @@ import java.util.List;
 /**
  * @author Anastasiia Rudyk
  */
-@Data
-@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 @Entity
@@ -26,6 +24,7 @@ public class Subject implements Serializable{
     private int amountLections;
     private int amountPractices;
     private int amountLaboratory;
+    private String description;
 
     @ManyToMany
     @JoinTable
@@ -39,4 +38,68 @@ public class Subject implements Serializable{
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "subjects")
     private List<Teacher> teachers;
+
+    public int getIdSubject() {
+        return idSubject;
+    }
+
+    public void setIdSubject(int idSubject) {
+        this.idSubject = idSubject;
+    }
+
+    public String getNameSubject() {
+        return nameSubject;
+    }
+
+    public void setNameSubject(String nameSubject) {
+        this.nameSubject = nameSubject;
+    }
+
+    public int getAmountLections() {
+        return amountLections;
+    }
+
+    public void setAmountLections(int amountLections) {
+        this.amountLections = amountLections;
+    }
+
+    public int getAmountPractices() {
+        return amountPractices;
+    }
+
+    public void setAmountPractices(int amountPractices) {
+        this.amountPractices = amountPractices;
+    }
+
+    public int getAmountLaboratory() {
+        return amountLaboratory;
+    }
+
+    public void setAmountLaboratory(int amountLaboratory) {
+        this.amountLaboratory = amountLaboratory;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
 }

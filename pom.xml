@@ -246,7 +246,8 @@
         </dependency>
 
     </dependencies>
+
     <build>
-        <finalName>Spring3HibernateIntegration</finalName>
+        <finalName>Timetable</finalName>
     </build>
 </project>

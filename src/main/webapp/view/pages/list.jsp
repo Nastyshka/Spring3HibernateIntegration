@@ -18,7 +18,7 @@
 
 <div id="header">
     <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="90" width="90"/></a>КПИяшка</h1>
+    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>КПИяшка</h1>
     <hr>
 </div>
 
@@ -29,7 +29,7 @@
         <form>
             <c:forEach items="${foundData.subjects}" var="subject">
                 <c:url value="/profileSubject.do" var="profileUrl">
-                    <c:param name="selectedPerson" value="${subject.idSubject}"/>
+                    <c:param name="selectedSubject" value="${subject.idSubject}"/>
                 </c:url>
                 <a name="selected" href="${profileUrl}"/><c:out value="${subject.nameSubject}"/></a> </br>
             </c:forEach>
@@ -51,7 +51,7 @@
         <form>
             <c:forEach items="${foundData.groups}" var="group">
                 <c:url value="/profileGroup.do" var="profileUrl">
-                    <c:param name="selectedPerson" value="${group.idperson}"/>
+                    <c:param name="selectedGroup" value="${group.idStudentGroup}"/>
                 </c:url>
                 <a name="selected" href="${profileUrl}"/><c:out value="${group.nameGroup}"/></a> </br>
             </c:forEach>
@@ -72,9 +72,9 @@
         <form>
             <c:forEach items="${foundData.classrooms}" var="classroom">
                 <c:url value="/profileTeacher.do" var="profileUrl">
-                    <c:param name="selectedPerson" value="${classroom.idperson}"/>
+                    <c:param name="selectedClassroom" value="${classroom.idClassroom}"/>
                 </c:url>
-                <a name="selected" href="${profileUrl}"/><c:out value="${classroom.nameTeacher}"/></a> </br>
+                <a name="selected" href="${profileUrl}"/><c:out value="${classroom.number}"/></a> </br>
             </c:forEach>
         </form>
     </c:if>

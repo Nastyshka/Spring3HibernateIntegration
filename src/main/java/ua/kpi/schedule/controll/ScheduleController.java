@@ -2,7 +2,10 @@ package ua.kpi.schedule.controll;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.kpi.schedule.model.Group;
@@ -19,6 +22,7 @@ public class ScheduleController {
 
     @Autowired
     private DataProcessor dataProcessor;
+    private Subject subject;
 
     /**
      * Controller method for home page
@@ -41,12 +45,12 @@ public class ScheduleController {
     }
 
     @RequestMapping("/profileSubject.do")
-    public ModelAndView profileSubject (@RequestParam(value = "idSubject", required = false) Integer idSubject) {
+    public ModelAndView profileSubject (@RequestParam(value = "selectedSubject", required = false) Integer selectedSubject) {
         ModelAndView modelAndView = new ModelAndView("/view/pages/profileSubject.jsp");
-        if (idSubject != null){
-            modelAndView.addObject("foundSubject", dataProcessor.findSubject(idSubject));
+        if (selectedSubject != null){
+            modelAndView.addObject("command", dataProcessor.findSubject(selectedSubject));
         } else {
-            modelAndView.addObject("foundSubject", new Subject());
+            modelAndView.addObject("command", new Subject());
         }
         return modelAndView;
     }
@@ -82,5 +86,14 @@ public class ScheduleController {
             modelAndView.addObject("foundGroup", new Group());
         }
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/addSubject.do", method = RequestMethod.POST)
+    public String addContact(@ModelAttribute("command")
+                             Subject subject, BindingResult result) {
+        dataProcessor.addSubject(subject);
+        System.out.println(subject.getNameSubject() + " " + subject.getDescription());
+//        ModelAndView modelAndView = new ModelAndView("subject", "command", new Subject());
+        return "redirect:/list.do";
     }
 }

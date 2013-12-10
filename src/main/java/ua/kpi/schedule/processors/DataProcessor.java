@@ -1,12 +1,12 @@
 package ua.kpi.schedule.processors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import ua.kpi.schedule.dao.ClassroomDAO;
 import ua.kpi.schedule.dao.GroupDAO;
 import ua.kpi.schedule.dao.SubjectDAO;
 import ua.kpi.schedule.dao.TeacherDAO;
 import ua.kpi.schedule.dto.DataBundle;
+import ua.kpi.schedule.model.Subject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -41,6 +41,22 @@ public class DataProcessor {
         return teacherDAO.find(idTeacher);
     }
 
+    public Object findClassroom(int idClassroom) {
+        return classroomDAO.find(idClassroom);
+    }
+
+    public Object findGroup(int idGroup) {
+        return groupDAO.find(idGroup);
+    }
+
+    public Object findSubject(int idSubject) {
+        return subjectDAO.find(idSubject);
+    }
+
+    public void addSubject(Subject subject) {
+        subjectDAO.save(subject);
+    }
+
     public TeacherDAO getTeacherDAO() {
         return teacherDAO;
     }
@@ -73,15 +89,6 @@ public class DataProcessor {
         this.classroomDAO = classroomDAO;
     }
 
-    public Object findClassroom(int idClassroom) {
-        return classroomDAO.find(idClassroom);
-    }
-
-    public Object findGroup(int idGroup) {
-        return groupDAO.find(idGroup);
-    }
-
-    public Object findSubject(int idSubject) {
-        return subjectDAO.find(idSubject);
+    public DataProcessor() {
     }
 }
