@@ -70,4 +70,5 @@ public class Group implements Serializable {
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
     }
+
 }
