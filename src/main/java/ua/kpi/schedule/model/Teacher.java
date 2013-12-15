@@ -11,8 +11,6 @@ import java.util.List;
 /**
  * @author Anastasiia Rudyk
  */
-@Data
-@ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
@@ -25,7 +23,7 @@ public class Teacher extends User {
 
     private String academicTitle;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable
             (name = "TEACHER_TRACK",
             joinColumns =
@@ -34,6 +32,38 @@ public class Teacher extends User {
                     {@JoinColumn(name = "SUBJECT_ID")})
     private List<Subject> subjects;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Lesson> lessons;
+
+    public int getIdTeacher() {
+        return idTeacher;
+    }
+
+    public void setIdTeacher(int idTeacher) {
+        this.idTeacher = idTeacher;
+    }
+
+    public String getAcademicTitle() {
+        return academicTitle;
+    }
+
+    public void setAcademicTitle(String academicTitle) {
+        this.academicTitle = academicTitle;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 }

@@ -1,12 +1,16 @@
 package ua.kpi.schedule.processors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import ua.kpi.schedule.dao.ClassroomDAO;
 import ua.kpi.schedule.dao.GroupDAO;
 import ua.kpi.schedule.dao.SubjectDAO;
 import ua.kpi.schedule.dao.TeacherDAO;
 import ua.kpi.schedule.dto.DataBundle;
+import ua.kpi.schedule.model.Classroom;
+import ua.kpi.schedule.model.Group;
 import ua.kpi.schedule.model.Subject;
+import ua.kpi.schedule.model.Teacher;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,6 +32,7 @@ public class DataProcessor {
     @Autowired
     private ClassroomDAO classroomDAO;
 
+    @Transactional
     public DataBundle getAllData(){
         DataBundle dataBundle = new DataBundle();
         dataBundle.setGroups(groupDAO.getAll());
@@ -90,5 +95,17 @@ public class DataProcessor {
     }
 
     public DataProcessor() {
+    }
+
+    public void addClassroom(Classroom classroom) {
+        classroomDAO.save(classroom);
+    }
+
+    public void addGroup(Group group) {
+        groupDAO.save(group);
+    }
+
+    public void addTeacher(Teacher teacher) {
+        teacherDAO.save(teacher);
     }
 }

@@ -14,8 +14,6 @@ import java.io.Serializable;
 /**
  * @author Anastasiia Rudyk
  */
-@Data
-@ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
@@ -27,4 +25,36 @@ public class Classroom implements Serializable{
     private String address;
     private String type;
     private String number;
+
+    public int getIdClassroom() {
+        return idClassroom;
+    }
+
+    public void setIdClassroom(int idClassroom) {
+        this.idClassroom = idClassroom;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 }

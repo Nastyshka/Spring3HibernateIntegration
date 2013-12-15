@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * @author Anastasiia Rudyk
  */
-@ToString
 @EqualsAndHashCode
 @Entity
 public class Subject implements Serializable{
@@ -26,7 +25,7 @@ public class Subject implements Serializable{
     private int amountLaboratory;
     private String description;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable
             (name = "GROUP_SUBJECT",
                     joinColumns =
@@ -36,7 +35,7 @@ public class Subject implements Serializable{
             )
     private List<Group> groups;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "subjects")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subjects")
     private List<Teacher> teachers;
 
     public int getIdSubject() {

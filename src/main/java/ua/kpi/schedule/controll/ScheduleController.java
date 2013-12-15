@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import ua.kpi.schedule.model.Classroom;
 import ua.kpi.schedule.model.Group;
 import ua.kpi.schedule.model.Subject;
 import ua.kpi.schedule.model.Teacher;
@@ -70,9 +71,9 @@ public class ScheduleController {
     public ModelAndView profileClassroom (@RequestParam(value = "idClassroom", required = false) Integer idClassroom) {
         ModelAndView modelAndView = new ModelAndView("/view/pages/profileClassroom.jsp");
         if (idClassroom != null){
-            modelAndView.addObject("foundClassroom", dataProcessor.findClassroom(idClassroom));
+            modelAndView.addObject("command", dataProcessor.findClassroom(idClassroom));
         } else {
-            modelAndView.addObject("foundClassroom", new Subject());
+            modelAndView.addObject("command", new Classroom());
         }
         return modelAndView;
     }
@@ -81,9 +82,9 @@ public class ScheduleController {
     public ModelAndView profileGroup (@RequestParam(value = "idGroup", required = false) Integer idGroup) {
         ModelAndView modelAndView = new ModelAndView("/view/pages/profileGroup.jsp");
         if (idGroup != null){
-            modelAndView.addObject("foundGroup", dataProcessor.findGroup(idGroup));
+            modelAndView.addObject("command", dataProcessor.findGroup(idGroup));
         } else{
-            modelAndView.addObject("foundGroup", new Group());
+            modelAndView.addObject("command", new Group());
         }
         return modelAndView;
     }
@@ -93,7 +94,27 @@ public class ScheduleController {
                              Subject subject, BindingResult result) {
         dataProcessor.addSubject(subject);
         System.out.println(subject.getNameSubject() + " " + subject.getDescription());
-//        ModelAndView modelAndView = new ModelAndView("subject", "command", new Subject());
+        return "redirect:/list.do";
+    }
+
+    @RequestMapping(value = "/addClassroom.do", method = RequestMethod.POST)
+    public String addClassroom(@ModelAttribute("command")
+                                   Classroom classroom, BindingResult result) {
+        dataProcessor.addClassroom(classroom);
+        return "redirect:/list.do";
+    }
+
+    @RequestMapping(value = "/addGroup.do", method = RequestMethod.POST)
+    public String addGroup(@ModelAttribute("command")
+                               Group group, BindingResult result) {
+        dataProcessor.addGroup(group);
+        return "redirect:/list.do";
+    }
+
+    @RequestMapping(value = "/addGroup.do", method = RequestMethod.POST)
+    public String addTeacher(@ModelAttribute("command")
+                           Teacher teacher, BindingResult result) {
+        dataProcessor.addTeacher(teacher);
         return "redirect:/list.do";
     }
 }

@@ -40,7 +40,6 @@
         <c:out value="Немає даних про предмети"/>
     </c:if>
 
-    <%--<a name="createSubject" href="/profileSubject.do"/><c:out value="Додати предмет"/></a> </br>--%>
     <input type="submit" value="Додати предмет"/>
 </form:form>
 

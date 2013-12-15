@@ -2,11 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Timetable</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="description" content="Pimp your tables with CSS3" />
+    <meta name="description" content="Pimp your tables with CSS3"/>
     <meta name="keywords" content="table, css3, style, beautiful, fancy, css"/>
     <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
     <style>
@@ -19,17 +20,40 @@
 <body>
 <div id="header">
     <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>КПИяшка</h1>
+    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg"
+                                                             height="57" width="57"/></a>КПИяшка</h1>
     <hr>
 </div>
 <div id="content">
     <a class="back" href=""></a>
     <span class="scroll"></span>
 
-    <h1>Додати нову аудиторію</h1>
+    <h1>Додати новий предмет</h1>
 
 </div>
+<form:form method="post" action="/timetable/addClassroom.do">
 
+    <table>
+        <tr>
+            <td><form:label path="number">Номер аудиторії</form:label></td>
+            <td><input name="command.number" type="text" value="${command.number}"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="address">Адреса</form:label></td>
+            <td><input name="command.address" type="text" value="${command.address}"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="type">Тип аудиторії</form:label></td>
+            <td><input name="command.type" type="text" value="${command.type}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Зберегти зміни"/>
+            </td>
+        </tr>
+    </table>
+
+</form:form>
 </body>
 </html>
 
