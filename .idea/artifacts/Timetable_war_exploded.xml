@@ -41,6 +41,19 @@
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.9" />
+          <element id="library" level="project" name="Maven: net.sf.jgap:jgap:3.4.4" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.3" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.3" />
+          <element id="library" level="project" name="Maven: net.sf.trove4j:trove4j:2.0.2" />
+          <element id="library" level="project" name="Maven: com.thoughtworks.xstream:xstream:1.2.2" />
+          <element id="library" level="project" name="Maven: xpp3:xpp3_min:1.1.3.4.O" />
+          <element id="library" level="project" name="Maven: xpp3:xpp3:1.1.3.4.O" />
+          <element id="library" level="project" name="Maven: commons-cli:commons-cli:1.0" />
+          <element id="library" level="project" name="Maven: tablelayout:TableLayout:20050920" />
+          <element id="library" level="project" name="Maven: net.sf.jcgrid:jcgrid:0.05" />
+          <element id="library" level="project" name="Maven: junit-addons:junit-addons:1.4" />
+          <element id="library" level="project" name="Maven: xerces:xercesImpl:2.6.2" />
+          <element id="library" level="project" name="Maven: xerces:xmlParserAPIs:2.6.2" />
         </element>
       </element>
     </root>
