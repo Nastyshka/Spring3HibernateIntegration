@@ -22,10 +22,15 @@ public class TimeSlot {
     @Id
     @GeneratedValue
     private int idTimeSlot;
-    private int timeslot_Number;
+    private int timeslotNumber;
+    private int lessonNumber;
     private String startTime;
     private String endTime;
-    private String dayOfWeek;
+    private int dayOfWeek;
     @OneToMany(mappedBy = "timeSlot")
     private List<Lesson> lessons;
+
+    TimeSlot(int i) {
+        this.timeslotNumber = i;
+    }
 }

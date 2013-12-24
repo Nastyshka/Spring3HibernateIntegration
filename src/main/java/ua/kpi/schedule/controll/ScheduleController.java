@@ -12,7 +12,8 @@ import ua.kpi.schedule.model.Classroom;
 import ua.kpi.schedule.model.Group;
 import ua.kpi.schedule.model.Subject;
 import ua.kpi.schedule.model.Teacher;
-import ua.kpi.schedule.processors.DataProcessor;
+import ua.kpi.schedule.processors.DataManager;
+import ua.kpi.schedule.processors.DataManager;
 
 /**
  * @author anastasiyar
@@ -22,7 +23,7 @@ import ua.kpi.schedule.processors.DataProcessor;
 public class ScheduleController {
 
     @Autowired
-    private DataProcessor dataProcessor;
+    private DataManager dataProcessor;
     private Subject subject;
 
     /**
