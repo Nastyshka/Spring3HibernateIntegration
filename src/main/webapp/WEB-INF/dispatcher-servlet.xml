@@ -22,7 +22,7 @@
 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="/WEB-INF/jdbc.properties"></bean>
+          p:location="/WEB-INF/jdbc.properties,/WEB-INF/timetble.properties"></bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     </bean>
@@ -82,5 +82,7 @@
         <property name="eManager" ref="sessionFactory"/>
     </bean>
 
-    <bean id="dataProcessor" class="ua.kpi.schedule.processors.DataProcessor"/>
+    <bean id="dataManager" class="ua.kpi.schedule.processors.DataManager"/>
+
+    <bean id="geneticProcessor" class="ua.kpi.schedule.ga.GeneticProcessor"/>
 </beans>

@@ -19,7 +19,7 @@ import ua.kpi.schedule.model.Teacher;
  * Time: 14:16
  * To change this template use File | Settings | File Templates.
  */
-public class DataProcessor {
+public class DataManager {
     @Autowired
     private TeacherDAO teacherDAO;
 
@@ -94,7 +94,7 @@ public class DataProcessor {
         this.classroomDAO = classroomDAO;
     }
 
-    public DataProcessor() {
+    public DataManager() {
     }
 
     public void addClassroom(Classroom classroom) {

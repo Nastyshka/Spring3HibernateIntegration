@@ -25,6 +25,16 @@ public class Classroom implements Serializable{
     private String address;
     private String type;
     private String number;
+    private Integer size;
+    private Integer syze;
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
 
     public int getIdClassroom() {
         return idClassroom;
@@ -56,5 +66,9 @@ public class Classroom implements Serializable{
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public Integer getSyze() {
+        return syze;
     }
 }
