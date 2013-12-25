@@ -1,6 +1,5 @@
 package ua.kpi.schedule.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -16,6 +15,7 @@ import java.io.Serializable;
  */
 @EqualsAndHashCode
 @NoArgsConstructor
+@ToString
 @Entity
 public class Classroom implements Serializable{
     @Id

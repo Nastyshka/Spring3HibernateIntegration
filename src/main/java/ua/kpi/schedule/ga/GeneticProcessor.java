@@ -34,33 +34,34 @@ public class GeneticProcessor {
     private Teacher[] teachers;
     private Subject[] subjects;
     private TimeSlot[] timeSlots;
+    private Group[] groups;
 
     public void setUpGenes(){
         DataBundle data = dataManager.getAllData();
         //Get ClassGenes (Classroom)
-        Classroom[] allClassrooms = (Classroom[]) data.getClassrooms().toArray();
-        ClassGene.setMax_idClass(allClassrooms.length);
-        for (int i = 0; i < allClassrooms.length; i++){
+        classrooms = (Classroom[]) data.getClassrooms().toArray();
+        ClassGene.setMax_idClass(classrooms.length);
+        for (int i = 0; i < classrooms.length; i++){
 
-            ClassGene.setInputClassSize(allClassrooms[i].getSize(), i);
-            logger.trace("Classroom number " + allClassrooms[i].getNumber() +
-                    "ClassRoomId = " + i + " size " + allClassrooms[i].getSize());
+            ClassGene.setInputClassSize(classrooms[i].getSize(), i);
+            logger.trace("Classroom number " + classrooms[i].getNumber() +
+                    "ClassRoomId = " + i + " size " + classrooms[i].getSize());
         }
 
         //Get GroupGenes
-        List<Group> allGroups = data.getGroups();
-        GroupGene.setMax_idGroup(allGroups.size());
-        for (int i = 0; i < allGroups.size(); i++){
-            GroupGene.setInputGroupSize(allGroups.get(i).getSize(), i);
-            logger.trace("Group number " + allGroups.get(i) +
-                    "GroupId = " + i + " size " + allGroups.get(i).getSize());
+        groups = (Group[]) data.getGroups().toArray();
+        GroupGene.setMax_idGroup(groups.length);
+        for (int i = 0; i < groups.length; i++){
+            GroupGene.setInputGroupSize(groups[i].getSize(), i);
+            logger.trace("Group number " + groups[i].getNameGroup() +
+                    "GroupId = " + i + " size " + groups.length);
         }
 
         //Get subjectGene
         Subject[] subjects = (Subject[]) data.getSubjects().toArray();
         LessonGene.setMax_idLesson(subjects.length);
         for (int i = 0; i < subjects.length; i++){
-            logger.trace("Subject " + allGroups.get(i) +
+            logger.trace("Subject " + groups[i].getNameGroup() +
                     "SubjectGeneId = " + i);
         }
 
