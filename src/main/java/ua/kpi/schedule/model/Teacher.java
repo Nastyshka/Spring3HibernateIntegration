@@ -12,7 +12,6 @@ import java.util.List;
  * @author Anastasiia Rudyk
  */
 @EqualsAndHashCode
-@NoArgsConstructor
 @Entity
 public class Teacher extends User {
 
@@ -34,6 +33,18 @@ public class Teacher extends User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Lesson> lessons;
+
+    //TODO: temporary solution
+    @Transient
+    private List<TimeSlot> availableTimeslots;
+
+    public List<TimeSlot> getAvailableTimeslots() {
+        return availableTimeslots;
+    }
+
+    public void setAvailableTimeslots(List<TimeSlot> availableTimeslots) {
+        this.availableTimeslots = availableTimeslots;
+    }
 
     public int getIdTeacher() {
         return idTeacher;
@@ -65,5 +76,8 @@ public class Teacher extends User {
 
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
+    }
+
+    public Teacher() {
     }
 }

@@ -27,6 +27,14 @@ public class Classroom implements Serializable{
     private String number;
     private Integer size;
 
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
     public int getIdClassroom() {
         return idClassroom;
     }
