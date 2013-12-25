@@ -82,6 +82,8 @@
         <property name="eManager" ref="sessionFactory"/>
     </bean>
 
+    <bean id="timeSlotHandler" class="ua.kpi.schedule.model.TimeSlotHandler"/>
+
     <bean id="dataManager" class="ua.kpi.schedule.processors.DataManager"/>
 
     <bean id="geneticProcessor" class="ua.kpi.schedule.ga.GeneticProcessor"/>

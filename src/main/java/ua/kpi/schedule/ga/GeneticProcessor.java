@@ -3,6 +3,7 @@ package ua.kpi.schedule.ga;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.w3c.dom.Element;
 import ua.kpi.schedule.dto.DataBundle;
 import ua.kpi.schedule.model.*;
 import ua.kpi.schedule.processors.DataManager;
@@ -20,7 +21,8 @@ public class GeneticProcessor {
     private final static Logger logger =  Logger.getLogger(GeneticProcessor.class);
     @Autowired
     private DataManager dataManager;
-
+    @Autowired
+    private TimeSlotHandler timeSlotHandler;
     @Value("${chromosomeSize}")
     private Integer chromosomeSize;
     @Value("${populationSize")
@@ -57,8 +59,16 @@ public class GeneticProcessor {
                     "GroupId = " + i + " size " + groups.length);
         }
 
+        //GetTimeGenes
+        timeSlots = timeSlotHandler.getTimeSlots();
+        TimeGene.setMax_idTimeSlot(timeSlots.length);
+        for (int i = 0; i < timeSlots.length; i++) {
+            System.out.println(timeSlots[i].getIdTimeSlot() + ": idTimeSlotGene=" + i);
+
+        }
+
         //Get subjectGene
-        Subject[] subjects = (Subject[]) data.getSubjects().toArray();
+        subjects = (Subject[]) data.getSubjects().toArray();
         LessonGene.setMax_idLesson(subjects.length);
         for (int i = 0; i < subjects.length; i++){
             logger.trace("Subject " + groups[i].getNameGroup() +
