@@ -143,6 +143,10 @@ public class GeneticProcessor {
             }
         }
 
+
+
+
+
         for (int i = 0; i < Start.CHROMOSOME_SIZE; i++) {
             s[i] = (GroupClassTeacherLessonTimeSG) bestChromosome.getGene(i);
 
