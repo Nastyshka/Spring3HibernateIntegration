@@ -146,6 +146,9 @@ public class GeneticProcessor {
         for (int i = 0; i < Start.CHROMOSOME_SIZE; i++) {
             s[i] = (GroupClassTeacherLessonTimeSG) bestChromosome.getGene(i);
 
+
+
+
             // Here we are going through all of the id_groups and the id_times
             // and filling str[][] array
             for (int j = 0; j < max_idGroup; j++) {
