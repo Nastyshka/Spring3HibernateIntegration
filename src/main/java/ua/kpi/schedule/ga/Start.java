@@ -17,9 +17,6 @@ public class Start {
     private static final String GENOTYPE_FILENAME = "D:\\population.xml";
     private static final String BEST_CHROMOSOME_FILENAME = "D:\\best_chromosome.xml";
     private static final String XML_TEST_FILENAME = "D:\\inputTimetable.xml";
-//    protected static int POPULATION_SIZE = 30;
-//    public static double THRESHOLD;
-//    public static Integer CHROMOSOME_SIZE = 5;
     private static long start_t = 0;
     private static long finish_t = 0;
 
