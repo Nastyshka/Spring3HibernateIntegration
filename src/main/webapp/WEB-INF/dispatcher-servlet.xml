@@ -14,7 +14,7 @@
 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="/WEB-INF/jdbc.properties,/WEB-INF/timetable.properties"></bean>
+          p:location="/WEB-INF/timetable.properties"></bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     </bean>
@@ -76,7 +76,9 @@
 
     <bean id="timeSlotHandler" class="ua.kpi.schedule.model.TimeSlotHandler"/>
 
-    <bean id="dataManager" class="ua.kpi.schedule.processors.DataManager"/>
+    <bean id="dataManager" class="ua.kpi.schedule.managers.DataManager"/>
 
-    <bean id="geneticProcessor" class="ua.kpi.schedule.ga.GeneticProcessor"/>
+    <bean id="geneticUtil" class="ua.kpi.schedule.util.GeneticUtil"/>
+
+    <bean id="constants" class="ua.kpi.schedule.util.Constants"/>
 </beans>

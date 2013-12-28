@@ -10,6 +10,8 @@ import org.jgap.Chromosome;
 import org.jgap.Genotype;
 import org.jgap.xml.XMLManager;
 import org.w3c.dom.Document;
+import ua.kpi.schedule.util.Constants;
+import ua.kpi.schedule.util.GeneticUtil;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,51 +23,53 @@ class OutputData {
     private Integer max_idGroup;
     private Integer max_idTime;
 
+    GeneticUtil geneticProcessor;
+
     OutputData() {
 
     }
 
-    void printToFile(Genotype a_currentPopulation,
-                     String a_savePopulationToFilename, 
-                     String a_saveBestChromosomeToFilename ) throws IOException {
-        //Convert Genotype to a DOM object
-        Document xmlRepresentation =
-            XMLManager.representGenotypeAsDocument(a_currentPopulation);
-
-        Writer genotypetWriter = new FileWriter(a_savePopulationToFilename);
-
-        OutputFormat formatting =
-            new OutputFormat(xmlRepresentation, "UTF-8", true);
-        SerializerFactory factory =
-            SerializerFactory.getSerializerFactory(Method.XML);
-        Serializer genotypeGenericSerializer =
-            factory.makeSerializer(genotypetWriter, formatting);
-        DOMSerializer genotypeDocumentSerializer = genotypeGenericSerializer.asDOMSerializer();
-
-        genotypeDocumentSerializer.serialize(xmlRepresentation);
-        genotypetWriter.close();
-        
-        //Convert bestChromosome to a DOM object
-        Document bestChromosomeXMLRepresentation =
-            XMLManager.representChromosomeAsDocument(a_currentPopulation.getFittestChromosome());
-        Writer chromosomeWriter = new FileWriter( a_saveBestChromosomeToFilename );
-        
-        Serializer chromosomeGenericSerializer = 
-          factory.makeSerializer(chromosomeWriter, formatting);
-        DOMSerializer chromosomeDocumentSerializer = chromosomeGenericSerializer.asDOMSerializer();
-        chromosomeDocumentSerializer.serialize(bestChromosomeXMLRepresentation);
-        chromosomeWriter.close();        
-    }
+//    void printToFile(Genotype a_currentPopulation,
+//                     String a_savePopulationToFilename,
+//                     String a_saveBestChromosomeToFilename ) throws IOException {
+//        //Convert Genotype to a DOM object
+//        Document xmlRepresentation =
+//            XMLManager.representGenotypeAsDocument(a_currentPopulation);
+//
+//        Writer genotypetWriter = new FileWriter(a_savePopulationToFilename);
+//
+//        OutputFormat formatting =
+//            new OutputFormat(xmlRepresentation, "UTF-8", true);
+//        SerializerFactory factory =
+//            SerializerFactory.getSerializerFactory(Method.XML);
+//        Serializer genotypeGenericSerializer =
+//            factory.makeSerializer(genotypetWriter, formatting);
+//        DOMSerializer genotypeDocumentSerializer = genotypeGenericSerializer.asDOMSerializer();
+//
+//        genotypeDocumentSerializer.serialize(xmlRepresentation);
+//        genotypetWriter.close();
+//
+//        //Convert bestChromosome to a DOM object
+//        Document bestChromosomeXMLRepresentation =
+//            XMLManager.representChromosomeAsDocument(a_currentPopulation.getFittestChromosome());
+//        Writer chromosomeWriter = new FileWriter( a_saveBestChromosomeToFilename );
+//
+//        Serializer chromosomeGenericSerializer =
+//          factory.makeSerializer(chromosomeWriter, formatting);
+//        DOMSerializer chromosomeDocumentSerializer = chromosomeGenericSerializer.asDOMSerializer();
+//        chromosomeDocumentSerializer.serialize(bestChromosomeXMLRepresentation);
+//        chromosomeWriter.close();
+//    }
 
     void printToConsole(Chromosome a_bestChromosome) {
 
         // Extracting GroupClassTimeSupergene from a_bestChromosome
         GroupClassTeacherLessonTimeSG[] s =
-            new GroupClassTeacherLessonTimeSG[Start.CHROMOSOME_SIZE];
+            new GroupClassTeacherLessonTimeSG[Constants.chromosomeSize];
         s[0] = (GroupClassTeacherLessonTimeSG)a_bestChromosome.getGene(0);
 
         // Extracting max_idGroup from GroupGene
-        GroupGene gg = (GroupGene)s[0].geneAt(Start.GROUP);
+        GroupGene gg = (GroupGene)s[0].geneAt(Constants.GROUP);
         max_idGroup = gg.getMax_idGroup();
 
         // Extracting max_idTime from TimeGene
@@ -81,19 +85,19 @@ class OutputData {
             }
         }
 
-        for (int i = 0; i < Start.CHROMOSOME_SIZE; i++) {
+        for (int i = 0; i < Constants.chromosomeSize; i++) {
             s[i] = (GroupClassTeacherLessonTimeSG)a_bestChromosome.getGene(i);
 
             // Here we are going through all of the id_groups and the id_times
             // and filling str[][] array
             for (int j = 0; j < max_idGroup; j++) {
                 for (int k = 0; k < max_idTime; k++) {
-                    if ((Integer)s[i].geneAt(Start.GROUP).getAllele() == j &&
-                        (Integer)s[i].geneAt(Start.TIME).getAllele() == k)
+                    if ((Integer)s[i].geneAt(Constants.GROUP).getAllele() == j &&
+                        (Integer)s[i].geneAt(Constants.TIME).getAllele() == k)
                         str[j][k] =
-                                s[i].geneAt(Start.LESSON).getAllele().toString() +"/"+
-                                s[i].geneAt(Start.TEACHER).getAllele().toString()+"/"+
-                                s[i].geneAt(Start.CLASS).getAllele().toString();
+                                s[i].geneAt(Constants.LESSON).getAllele().toString() +"/"+
+                                s[i].geneAt(Constants.TEACHER).getAllele().toString()+"/"+
+                                s[i].geneAt(Constants.CLASS).getAllele().toString();
                 }
             }
         }

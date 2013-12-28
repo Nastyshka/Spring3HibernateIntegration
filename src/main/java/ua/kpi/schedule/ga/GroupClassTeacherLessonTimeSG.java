@@ -5,6 +5,7 @@ import org.jgap.Gene;
 import org.jgap.InvalidConfigurationException;
 import org.jgap.supergenes.AbstractSupergene;
 import org.jgap.supergenes.Supergene;
+import ua.kpi.schedule.util.Constants;
 
 public class GroupClassTeacherLessonTimeSG extends AbstractSupergene {
   private static final String TOKEN_SEPARATOR = ":";
@@ -31,10 +32,10 @@ public class GroupClassTeacherLessonTimeSG extends AbstractSupergene {
 
   @Override
   public String getPersistentRepresentation() throws UnsupportedOperationException {
-    return this.geneAt(Start.GROUP).getPersistentRepresentation() +
-      GENE_DELIMITER + this.geneAt(Start.CLASS).getPersistentRepresentation() +
-      GENE_DELIMITER + this.geneAt(Start.TEACHER).getPersistentRepresentation() +
-      GENE_DELIMITER + this.geneAt(Start.LESSON).getPersistentRepresentation() +
-      GENE_DELIMITER + this.geneAt(Start.TIME).getPersistentRepresentation();
+    return this.geneAt(Constants.GROUP).getPersistentRepresentation() +
+      GENE_DELIMITER + this.geneAt(Constants.CLASS).getPersistentRepresentation() +
+      GENE_DELIMITER + this.geneAt(Constants.TEACHER).getPersistentRepresentation() +
+      GENE_DELIMITER + this.geneAt(Constants.LESSON).getPersistentRepresentation() +
+      GENE_DELIMITER + this.geneAt(Constants.TIME).getPersistentRepresentation();
   }
 }

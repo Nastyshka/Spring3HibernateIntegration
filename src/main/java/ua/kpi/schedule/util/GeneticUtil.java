@@ -1,12 +1,14 @@
-package ua.kpi.schedule.ga;
+package ua.kpi.schedule.util;
 
 import org.jgap.Chromosome;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Value;
 import ua.kpi.schedule.dto.DataBundle;
+import ua.kpi.schedule.ga.*;
 import ua.kpi.schedule.model.*;
-import ua.kpi.schedule.processors.DataManager;
+import ua.kpi.schedule.managers.DataManager;
+import ua.kpi.schedule.ga.Start;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,21 +18,13 @@ import org.apache.log4j.Logger;
  * @author AnastasiyaR
  */
 
-public class GeneticProcessor {
+public class GeneticUtil {
 
-    private final static Logger logger =  Logger.getLogger(GeneticProcessor.class);
+    private final static Logger logger =  Logger.getLogger(GeneticUtil.class);
     @Autowired
     private DataManager dataManager;
     @Autowired
     private TimeSlotHandler timeSlotHandler;
-    @Value("${chromosomeSize}")
-    private Integer chromosomeSize;
-    @Value("${populationSize")
-    private Integer populationSize;
-    @Value("${maxEvolution}")
-    private  Integer maxEvolution;
-    @Value("${threshold}")
-    private Integer threshold;
 
     private Classroom [] classrooms;
     private Teacher[] teachers;
@@ -129,10 +123,10 @@ public class GeneticProcessor {
 
         // Extracting GroupClassTimeSupergene from a_bestChromosome
         GroupClassTeacherLessonTimeSG[] s =
-                new GroupClassTeacherLessonTimeSG[Start.CHROMOSOME_SIZE];
+                new GroupClassTeacherLessonTimeSG[Constants.chromosomeSize];
         s[0] = (GroupClassTeacherLessonTimeSG) bestChromosome.getGene(0);
         // Extracting max_idGroup from GroupGene
-        GroupGene gg = (GroupGene)s[0].geneAt(Start.GROUP);
+        GroupGene gg = (GroupGene)s[0].geneAt(Constants.GROUP);
         max_idGroup = gg.getMax_idGroup();
 
         // first - Group, second - Time
@@ -147,28 +141,25 @@ public class GeneticProcessor {
 
 
 
-        for (int i = 0; i < Start.CHROMOSOME_SIZE; i++) {
+        for (int i = 0; i < Constants.chromosomeSize; i++) {
             s[i] = (GroupClassTeacherLessonTimeSG) bestChromosome.getGene(i);
-
-
-
 
             // Here we are going through all of the id_groups and the id_times
             // and filling str[][] array
             for (int j = 0; j < max_idGroup; j++) {
                 Lesson lesson = new Lesson();
                 for (int k = 0; k < max_idTime; k++) {
-                    if ((Integer) s[i].geneAt(Start.GROUP).getAllele() == j &&
-                            (Integer) s[i].geneAt(Start.TIME).getAllele() == k) {
+                    if ((Integer) s[i].geneAt(Constants.GROUP).getAllele() == j &&
+                            (Integer) s[i].geneAt(Constants.TIME).getAllele() == k) {
                         str[j][k] =
-                                s[i].geneAt(Start.LESSON).getAllele().toString() + "/" +
-                                        s[i].geneAt(Start.TEACHER).getAllele().toString() + "/" +
-                                        s[i].geneAt(Start.CLASS).getAllele().toString();
-                        lesson.setClassroom(classrooms[new Integer(s[i].geneAt(Start.CLASS).getAllele().toString())]);
-                        lesson.setTeacher(teachers[new Integer(s[i].geneAt(Start.TEACHER).getAllele().toString())]);
-                        lesson.setSubject(subjects[new Integer(s[i].geneAt(Start.LESSON).getAllele().toString())]);
-                        lesson.setTimeSlot(timeSlots[new Integer(s[i].geneAt(Start.TIME).getAllele().toString())]);
-                        lesson.setGroup(groups[new Integer(s[i].geneAt(Start.GROUP).getAllele().toString())]);
+                                s[i].geneAt(Constants.LESSON).getAllele().toString() + "/" +
+                                        s[i].geneAt(Constants.TEACHER).getAllele().toString() + "/" +
+                                        s[i].geneAt(Constants.CLASS).getAllele().toString();
+                        lesson.setClassroom(classrooms[new Integer(s[i].geneAt(Constants.CLASS).getAllele().toString())]);
+                        lesson.setTeacher(teachers[new Integer(s[i].geneAt(Constants.TEACHER).getAllele().toString())]);
+                        lesson.setSubject(subjects[new Integer(s[i].geneAt(Constants.LESSON).getAllele().toString())]);
+                        lesson.setTimeSlot(timeSlots[new Integer(s[i].geneAt(Constants.TIME).getAllele().toString())]);
+                        lesson.setGroup(groups[new Integer(s[i].geneAt(Constants.GROUP).getAllele().toString())]);
                         timetable.add(lesson);
                     }
                 }

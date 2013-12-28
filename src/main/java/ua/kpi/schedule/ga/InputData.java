@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import ua.kpi.schedule.util.Constants;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Collections;
 
 public class InputData {
 
@@ -32,13 +34,13 @@ public class InputData {
     NodeList firstElements = document.getElementsByTagName("timetable");
     Element firstElement = (Element)firstElements.item(0);
 
-    Start.CHROMOSOME_SIZE =
+    Constants.chromosomeSize =
         Integer.parseInt(firstElement.getAttribute("chromosome_size"));
-    Start.POPULATION_SIZE =
+    Constants.populationSize =
         Integer.parseInt(firstElement.getAttribute("population_size"));
     Start.MAX_EVOLUTIONS =
         Integer.parseInt(firstElement.getAttribute("max_evolution"));
-    Start.THRESHOLD = Integer.parseInt(firstElement.getAttribute("threshold"));
+    Constants.threshold = Integer.parseInt(firstElement.getAttribute("threshold"));
     System.out.println("chromosome_size:" +
                        firstElement.getAttribute("chromosome_size") +
                        " population_size:" +

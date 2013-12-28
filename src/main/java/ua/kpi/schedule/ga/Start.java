@@ -6,29 +6,25 @@ import org.jgap.impl.BestChromosomesSelector;
 import org.jgap.impl.CrossoverOperator;
 import org.jgap.impl.StockRandomGenerator;
 import org.xml.sax.SAXException;
+import ua.kpi.schedule.util.Constants;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.Calendar;
 
 public class Start {
-    protected static final int GROUP   = 0;
-    protected static final int CLASS   = 1;
-    protected static final int TEACHER = 2;
-    protected static final int LESSON  = 3;
-    protected static final int TIME    = 4;
     protected static int MAX_EVOLUTIONS;
     private static final String GENOTYPE_FILENAME = "D:\\population.xml";
     private static final String BEST_CHROMOSOME_FILENAME = "D:\\best_chromosome.xml";
     private static final String XML_TEST_FILENAME = "D:\\inputTimetable.xml";
-    protected static int POPULATION_SIZE = 30;
-    protected static double THRESHOLD;
-    protected  static Integer CHROMOSOME_SIZE = 5;
+//    protected static int POPULATION_SIZE = 30;
+//    public static double THRESHOLD;
+//    public static Integer CHROMOSOME_SIZE = 5;
     private static long start_t = 0;
     private static long finish_t = 0;
 
 
-    public static void main(String[] args) throws InvalidConfigurationException {
+    public static void main() throws InvalidConfigurationException {
         
         // Reading data from xml
         try {
@@ -43,14 +39,15 @@ public class Start {
         
         //Configuration conf = new DefaultConfiguration();
         Configuration conf = new Configuration("myconf");
+        conf.reset();
         TimetableFitnessFunction fitnessFunction =
             new TimetableFitnessFunction();
         InitialConstraintChecker timetableConstraintChecker =
             new InitialConstraintChecker();
         
         //Creating genes
-        Gene[] testGenes = new Gene[CHROMOSOME_SIZE];
-        for (int i = 0; i < CHROMOSOME_SIZE; i++) {
+        Gene[] testGenes = new Gene[Constants.chromosomeSize];
+        for (int i = 0; i < Constants.chromosomeSize; i++) {
             testGenes[i] =
                     new GroupClassTeacherLessonTimeSG(conf, new Gene[] { new GroupGene(conf,1),
                                                                    new ClassGene(conf,1),
@@ -66,7 +63,7 @@ public class Start {
         testChromosome.setConstraintChecker(timetableConstraintChecker);
         //Setup configuration
         conf.setSampleChromosome(testChromosome);
-        conf.setPopulationSize(POPULATION_SIZE);
+        conf.setPopulationSize(Constants.populationSize);
         conf.setFitnessFunction(fitnessFunction); // add fitness function
 
         BestChromosomesSelector myBestChromosomesSelector =
@@ -105,7 +102,7 @@ public class Start {
             System.out.println("generation#: "+i+" population size:"+
                                (Integer)population.getPopulation().size());
             if (population.getFittestChromosome().getFitnessValue() >=
-                THRESHOLD)
+                Constants.threshold)
                 break;
             population.evolve();
         }
@@ -118,15 +115,15 @@ public class Start {
         System.out.println("-------------The best chromosome---fitness=" +
                            fittestChromosome.getFitnessValue() + "---");
         System.out.println("                Group Class Time");
-        for (int i = 0; i < CHROMOSOME_SIZE; i++) {
+        for (int i = 0; i < Constants.chromosomeSize; i++) {
             GroupClassTeacherLessonTimeSG s =
                 (GroupClassTeacherLessonTimeSG)fittestChromosome.getGene(i);
             System.out.println("Gene " + i + " contains: " +
-                               (Integer)s.geneAt(GROUP).getAllele() + " " +
-                               (Integer)s.geneAt(CLASS).getAllele() + " " +
-                               (Integer)s.geneAt(TEACHER).getAllele() + " " +
-                               (Integer)s.geneAt(LESSON).getAllele() + " " +
-                               (Integer)s.geneAt(TIME).getAllele());
+                               (Integer)s.geneAt(Constants.GROUP).getAllele() + " " +
+                               (Integer)s.geneAt(Constants.CLASS).getAllele() + " " +
+                               (Integer)s.geneAt(Constants.TEACHER).getAllele() + " " +
+                               (Integer)s.geneAt(Constants.LESSON).getAllele() + " " +
+                               (Integer)s.geneAt(Constants.TIME).getAllele());
         //GroupGene gg = (GroupGene)s.geneAt(GROUP);
         //System.out.println("gg's idGroup"+gg.getAllele()+" gg.getGroupSize()"+ gg.getGroupSize() );
         }
@@ -140,11 +137,11 @@ public class Start {
         od.printToConsole(fittestChromosome);
         
         //Write population to the disk
-        try {
-          od.printToFile(population, GENOTYPE_FILENAME, BEST_CHROMOSOME_FILENAME);
-        } catch (IOException e) {
-            System.out.println("IOException raised! " + e.getMessage());
-        }
+//        try {
+//          od.printToFile(population, GENOTYPE_FILENAME, BEST_CHROMOSOME_FILENAME);
+//        } catch (IOException e) {
+//            System.out.println("IOException raised! " + e.getMessage());
+//        }
 
     }
 
