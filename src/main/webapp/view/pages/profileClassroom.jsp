@@ -31,24 +31,24 @@
     <h1>Додати новий предмет</h1>
 
 </div>
-<form:form method="post" action="/timetable/addClassroom.do">
-
+<form:form method="post" action="/timetable/addClassroom.do" commandName="classroom">
+    <form:hidden path="idClassroom"/>
     <table>
         <tr>
             <td><form:label path="number">Номер аудиторії</form:label></td>
-            <td><input name="command.number" type="text" value="${command.number}"/></td>
+            <td><form:input path="number" name="classroom.number" type="text" value="${command.number}"/></td>
         </tr>
         <tr>
             <td><form:label path="address">Адреса</form:label></td>
-            <td><input name="command.address" type="text" value="${command.address}"/></td>
+            <td><form:input path="address" name="classroom.address" type="text" value="${command.address}"/></td>
         </tr>
         <tr>
             <td><form:label path="type">Тип аудиторії</form:label></td>
-            <td><input name="command.type" type="text" value="${command.type}"/></td>
+            <td><form:input path="type" name="classroom.type" type="text" value="${command.type}"/></td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Зберегти зміни"/>
+                <input type="submit" value="Зберегти"/>
             </td>
         </tr>
     </table>

@@ -26,8 +26,8 @@ public class GenericDAO <T>{
 
     @Transactional
     public void save (T entity){
-//        eManager.getCurrentSession().merge(entity);
         eManager.getCurrentSession().saveOrUpdate(entity);
+//        eManager.getCurrentSession().flush();
     }
     @Transactional
     public void delete (T entity){

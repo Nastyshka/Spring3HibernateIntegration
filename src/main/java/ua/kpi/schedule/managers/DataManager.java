@@ -58,10 +58,6 @@ public class DataManager {
         return subjectDAO.find(idSubject);
     }
 
-    public void addSubject(Subject subject) {
-        subjectDAO.save(subject);
-    }
-
     public TeacherDAO getTeacherDAO() {
         return teacherDAO;
     }
@@ -97,15 +93,21 @@ public class DataManager {
     public DataManager() {
     }
 
-    public void addClassroom(Classroom classroom) {
+    public void saveClassroom(Classroom classroom) {
         classroomDAO.save(classroom);
+//        return classroom.getIdClassroom();
     }
 
-    public void addGroup(Group group) {
+    public void saveGroup(Group group) {
         groupDAO.save(group);
     }
 
-    public void addTeacher(Teacher teacher) {
+    public void saveTeacher(Teacher teacher) {
         teacherDAO.save(teacher);
+    }
+
+
+    public void saveSubject(Subject subject) {
+        subjectDAO.save(subject);
     }
 }

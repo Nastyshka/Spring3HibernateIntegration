@@ -31,12 +31,12 @@
     <h1>Додати новий предмет</h1>
 
 </div>
-<form:form method="post" action="/timetable/addGroup.do">
-
+<form:form method="post" action="/timetable/addGroup.do" commandName="group">
+    <form:hidden path="idStudentGroup"/>
     <table>
         <tr>
             <td><form:label path="nameGroup">Назва групи</form:label></td>
-            <td><input name="command.nameGroup" type="text" value="${command.nameGroup}"/></td>
+            <td><form:input path="nameGroup" name="command.nameGroup" type="text" value="${command.nameGroup}"/></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -44,7 +44,6 @@
             </td>
         </tr>
     </table>
-
 </form:form>
 </body>
 </html>

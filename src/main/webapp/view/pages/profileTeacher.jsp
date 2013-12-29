@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Timetable</title>
@@ -25,11 +26,12 @@
 <div id="content">
     <a class="back" href=""></a>
     <span class="scroll"></span>
-
     <h1>Створити профайл викладача</h1>
-
 </div>
 
+<form:form method="post" action="/timetable/addTeacher.do" commandName="teacher">
+    <input type="submit" value="Зберегти"/>
+    </form:form>
 </body>
 </html>
 

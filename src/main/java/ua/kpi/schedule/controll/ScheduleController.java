@@ -56,7 +56,7 @@ public class ScheduleController {
     public ModelAndView foundAllData() throws InvalidConfigurationException {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
         modelAndView.addObject("foundData", dataProcessor.getAllData());
-        Start.main();
+//        Start.main();
         return modelAndView;
     }
 
@@ -65,72 +65,71 @@ public class ScheduleController {
     if(selectedSubject!=null){
           model.put("subject", dataProcessor.findSubject(selectedSubject));
     } else {
-        Subject s = new Subject();
-        model.put("subject", s);
+        model.put("subject", new Subject());
     }
-
     return "/view/pages/profileSubject.jsp";
 }
 
     @RequestMapping("/profileTeacher.do")
-    public ModelAndView profileTeacher(@RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
-        ModelAndView modelAndView = new ModelAndView("/view/pages/profileTeacher.jsp");
+    public String profileTeacher(Map<String, Object> model, @RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
+//        ModelAndView modelAndView = new ModelAndView("/view/pages/profileTeacher.jsp");
         if (idTeacher != null) {
-            modelAndView.addObject("foundTeacher", dataProcessor.findTeacher(idTeacher));
+            model.put("teacher", dataProcessor.findTeacher(idTeacher));
         } else {
-            modelAndView.addObject("foundTeacher", new Teacher());
+            model.put("teacher", new Teacher());
         }
-        return modelAndView;
+        return "/view/pages/profileTeacher.jsp";
     }
 
-    @RequestMapping("/profileClassroom.do")
-    public ModelAndView profileClassroom(@RequestParam(value = "idClassroom", required = false) Integer idClassroom) {
-        ModelAndView modelAndView = new ModelAndView("/view/pages/profileClassroom.jsp");
+    @RequestMapping(value = "/profileClassroom.do", method = RequestMethod.GET)
+    public String profileClassroom(Map<String, Object> model, @RequestParam(value = "selectedClassroom", required = false) Integer idClassroom) {
+//        ModelAndView modelAndView = new ModelAndView("/view/pages/profileClassroom.jsp");
         if (idClassroom != null) {
-            modelAndView.addObject("command", dataProcessor.findClassroom(idClassroom));
+            model.put("classroom", dataProcessor.findClassroom(idClassroom));
         } else {
-            modelAndView.addObject("command", new Classroom());
+            model.put("classroom", new Classroom());
         }
-        return modelAndView;
+        return "/view/pages/profileClassroom.jsp";
     }
 
-    @RequestMapping("/profileGroup.do")
-    public ModelAndView profileGroup(@RequestParam(value = "idGroup", required = false) Integer idGroup) {
-        ModelAndView modelAndView = new ModelAndView("/view/pages/profileGroup.jsp");
+    @RequestMapping(value = "/profileGroup.do", method = RequestMethod.GET)
+    public String profileGroup
+            (@RequestParam(value = "selectedGroup", required = false) Integer idGroup, Map<String, Object> model) {
+//        ModelAndView modelAndView = new ModelAndView("/view/pages/profileGroup.jsp");
         if (idGroup != null) {
-            modelAndView.addObject("command", dataProcessor.findGroup(idGroup));
+            model.put("group", dataProcessor.findGroup(idGroup));
         } else {
-            modelAndView.addObject("command", new Group());
+            model.put("group", new Group());
         }
-        return modelAndView;
+        return "/view/pages/profileGroup.jsp";
     }
 
     @RequestMapping(value = "/addSubject.do", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("subject")
                              Subject subject, Map<String, Object> model) {
-        dataProcessor.addSubject(subject);
+        dataProcessor.saveSubject(subject);
         System.out.println(subject.getNameSubject() + " " + subject.getDescription());
         return "redirect:/list.do";
     }
 
     @RequestMapping(value = "/addClassroom.do", method = RequestMethod.POST)
-    public String addClassroom(@ModelAttribute("command")
-                               Classroom classroom, BindingResult result) {
-        dataProcessor.addClassroom(classroom);
+    public String addClassroom(@ModelAttribute("classroom")
+                               Classroom classroom, Map<String, Object> model) {
+        dataProcessor.saveClassroom(classroom);
         return "redirect:/list.do";
     }
 
     @RequestMapping(value = "/addGroup.do", method = RequestMethod.POST)
-    public String addGroup(@ModelAttribute("command")
-                           Group group, BindingResult result) {
-        dataProcessor.addGroup(group);
+    public String addGroup(@ModelAttribute("group")
+                           Group group, Map<String, Object> model) {
+        dataProcessor.saveGroup(group);
         return "redirect:/list.do";
     }
 
-    @RequestMapping(value = "/addGroup.do", method = RequestMethod.POST)
-    public String addTeacher(@ModelAttribute("command")
-                             Teacher teacher, BindingResult result) {
-        dataProcessor.addTeacher(teacher);
+    @RequestMapping(value = "/addTeacher.do", method = RequestMethod.POST)
+    public String addTeacher(@ModelAttribute("teacher")
+                             Teacher teacher, Map<String, Object> model) {
+        dataProcessor.saveTeacher(teacher);
         return "redirect:/list.do";
     }
 }
