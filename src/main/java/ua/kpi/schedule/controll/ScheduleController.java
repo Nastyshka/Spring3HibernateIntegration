@@ -16,6 +16,8 @@ import ua.kpi.schedule.model.Subject;
 import ua.kpi.schedule.model.Teacher;
 import ua.kpi.schedule.managers.DataManager;
 
+import java.util.Map;
+
 /**
  * @author anastasiyar
  */
@@ -25,44 +27,55 @@ public class ScheduleController {
 
     @Autowired
     private DataManager dataProcessor;
-    private Subject subject;
+    private Subject command;
+
+    public Subject getCommand() {
+        return command;
+    }
+
+    public void setCommand(Subject command) {
+        this.command = command;
+    }
 
     /**
      * Controller method for home page
+     *
      * @return ModelAndView
      */
     @RequestMapping("/home.do")
-    public ModelAndView home (){
+    public ModelAndView home() {
         return new ModelAndView("view/pages/index.jsp");
     }
 
     /**
      * Controller method found all teachers
+     *
      * @return ModelAndView
      */
     @RequestMapping("/list.do")
-    public ModelAndView foundAllData () throws InvalidConfigurationException {
+    public ModelAndView foundAllData() throws InvalidConfigurationException {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
         modelAndView.addObject("foundData", dataProcessor.getAllData());
         Start.main();
         return modelAndView;
     }
 
-    @RequestMapping("/profileSubject.do")
-    public ModelAndView profileSubject (@RequestParam(value = "selectedSubject", required = false) Integer selectedSubject) {
-        ModelAndView modelAndView = new ModelAndView("/view/pages/profileSubject.jsp");
-        if (selectedSubject != null){
-            modelAndView.addObject("command", dataProcessor.findSubject(selectedSubject));
-        } else {
-            modelAndView.addObject("command", new Subject());
-        }
-        return modelAndView;
+    @RequestMapping(value = "/profileSubject.do", method = RequestMethod.GET)
+    public String profileSubject (Map<String, Object> model, @RequestParam(value = "selectedSubject", required = false) Integer selectedSubject){
+    if(selectedSubject!=null){
+          model.put("subject", dataProcessor.findSubject(selectedSubject));
+    } else {
+        Subject s = new Subject();
+        model.put("subject", s);
     }
 
+    return "/view/pages/profileSubject.jsp";
+}
+
     @RequestMapping("/profileTeacher.do")
-    public ModelAndView profileTeacher (@RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
+    public ModelAndView profileTeacher(@RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
         ModelAndView modelAndView = new ModelAndView("/view/pages/profileTeacher.jsp");
-        if (idTeacher != null){
+        if (idTeacher != null) {
             modelAndView.addObject("foundTeacher", dataProcessor.findTeacher(idTeacher));
         } else {
             modelAndView.addObject("foundTeacher", new Teacher());
@@ -71,9 +84,9 @@ public class ScheduleController {
     }
 
     @RequestMapping("/profileClassroom.do")
-    public ModelAndView profileClassroom (@RequestParam(value = "idClassroom", required = false) Integer idClassroom) {
+    public ModelAndView profileClassroom(@RequestParam(value = "idClassroom", required = false) Integer idClassroom) {
         ModelAndView modelAndView = new ModelAndView("/view/pages/profileClassroom.jsp");
-        if (idClassroom != null){
+        if (idClassroom != null) {
             modelAndView.addObject("command", dataProcessor.findClassroom(idClassroom));
         } else {
             modelAndView.addObject("command", new Classroom());
@@ -82,19 +95,19 @@ public class ScheduleController {
     }
 
     @RequestMapping("/profileGroup.do")
-    public ModelAndView profileGroup (@RequestParam(value = "idGroup", required = false) Integer idGroup) {
+    public ModelAndView profileGroup(@RequestParam(value = "idGroup", required = false) Integer idGroup) {
         ModelAndView modelAndView = new ModelAndView("/view/pages/profileGroup.jsp");
-        if (idGroup != null){
+        if (idGroup != null) {
             modelAndView.addObject("command", dataProcessor.findGroup(idGroup));
-        } else{
+        } else {
             modelAndView.addObject("command", new Group());
         }
         return modelAndView;
     }
 
     @RequestMapping(value = "/addSubject.do", method = RequestMethod.POST)
-    public String addContact(@ModelAttribute("command")
-                             Subject subject, BindingResult result) {
+    public String addContact(@ModelAttribute("subject")
+                             Subject subject, Map<String, Object> model) {
         dataProcessor.addSubject(subject);
         System.out.println(subject.getNameSubject() + " " + subject.getDescription());
         return "redirect:/list.do";
@@ -102,21 +115,21 @@ public class ScheduleController {
 
     @RequestMapping(value = "/addClassroom.do", method = RequestMethod.POST)
     public String addClassroom(@ModelAttribute("command")
-                                   Classroom classroom, BindingResult result) {
+                               Classroom classroom, BindingResult result) {
         dataProcessor.addClassroom(classroom);
         return "redirect:/list.do";
     }
 
     @RequestMapping(value = "/addGroup.do", method = RequestMethod.POST)
     public String addGroup(@ModelAttribute("command")
-                               Group group, BindingResult result) {
+                           Group group, BindingResult result) {
         dataProcessor.addGroup(group);
         return "redirect:/list.do";
     }
 
     @RequestMapping(value = "/addGroup.do", method = RequestMethod.POST)
     public String addTeacher(@ModelAttribute("command")
-                           Teacher teacher, BindingResult result) {
+                             Teacher teacher, BindingResult result) {
         dataProcessor.addTeacher(teacher);
         return "redirect:/list.do";
     }

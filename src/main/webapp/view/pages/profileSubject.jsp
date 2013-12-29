@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Timetable</title>
@@ -31,32 +32,32 @@
     <h1>Додати новий предмет</h1>
 
 </div>
-<form:form method="post" action="/timetable/addSubject.do">
+<form:form method="post" action="/timetable/addSubject.do" commandName="subject">
 
     <table>
-        <tr>
+        <form:hidden path="idSubject"/>
             <td><form:label path="nameSubject">Назва предмету</form:label></td>
-            <td><input name="command.nameSubject" type="text" value="${command.nameSubject}"/></td>
+            <td><form:input path="nameSubject" name="command.nameSubject" type="text" value="${subject.nameSubject}"/></td>
         </tr>
         <tr>
             <td><form:label path="description">Опис</form:label></td>
-            <td><input name="command.description" type="text" value="${command.description}"/></td>
+            <td><form:input path="description" name="command.description" type="text" value="${subject.description}"/></td>
         </tr>
         <tr>
             <td><form:label path="amountLections">Кількість лекцій</form:label></td>
-            <td><input name="command.amountLections" type="text" value="${command.amountLections}"/></td>
+            <td><form:input path="amountLections" name="command.amountLections" type="text" value="${subject.amountLections}"/></td>
         </tr>
         <tr>
             <td><form:label path="amountPractices">Кількість практичних занять</form:label></td>
-            <td><input name="command.amountPractices" type="text" value="${command.amountPractices}"/></td>
+            <td><form:input path="amountPractices" name="command.amountPractices" type="text" value="${subject.amountPractices}"/></td>
         </tr>
         <tr>
             <td><form:label path="amountLaboratory">Кількість лабораторних занять</form:label></td>
-            <td><input name="command.amountLaboratory" value="${command.amountLaboratory}" type="text"/></td>
+            <td><input:input path="amountLaboratory" name="command.amountLaboratory" value="${subject.amountLaboratory}" type="text"/></td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Додати предмет"/>
+                <input type="submit" value="Зберегти предмет"/>
             </td>
         </tr>
     </table>

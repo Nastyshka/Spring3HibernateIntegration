@@ -13,9 +13,6 @@ import java.util.List;
 /**
  * @author anastasiyar
  */
-
-@Data
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 public class TimeSlot {
@@ -32,5 +29,64 @@ public class TimeSlot {
 
     TimeSlot(int i) {
         this.timeslotNumber = i;
+    }
+
+    public TimeSlot() {
+    }
+
+    public int getIdTimeSlot() {
+        return idTimeSlot;
+    }
+
+    public void setIdTimeSlot(int idTimeSlot) {
+        this.idTimeSlot = idTimeSlot;
+    }
+
+    public int getTimeslotNumber() {
+        return timeslotNumber;
+    }
+
+    public void setTimeslotNumber(int timeslotNumber) {
+        this.timeslotNumber = timeslotNumber;
+    }
+
+    public int getLessonNumber() {
+        return lessonNumber;
+    }
+
+    public void setLessonNumber(int lessonNumber) {
+        this.lessonNumber = lessonNumber;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public int getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(int dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 }

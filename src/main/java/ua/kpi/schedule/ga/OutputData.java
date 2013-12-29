@@ -102,6 +102,8 @@ class OutputData {
             }
         }
 
+        GeneticUtil geneticUtil = new GeneticUtil();
+        geneticUtil.extractLessonsDataFromChromosome(a_bestChromosome);
         // Printing str[][] array
         System.out.println("------------------------------");
         System.out.println("-----Lesson/Teacher/Class-----");
