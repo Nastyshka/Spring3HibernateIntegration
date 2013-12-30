@@ -3,19 +3,19 @@ package ua.kpi.schedule.controll;
 import org.jgap.InvalidConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.kpi.schedule.ga.Start;
 import ua.kpi.schedule.model.Classroom;
 import ua.kpi.schedule.model.Group;
 import ua.kpi.schedule.model.Subject;
 import ua.kpi.schedule.model.Teacher;
 import ua.kpi.schedule.managers.DataManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,6 +73,11 @@ public class ScheduleController {
     @RequestMapping("/profileTeacher.do")
     public String profileTeacher(Map<String, Object> model, @RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
 //        ModelAndView modelAndView = new ModelAndView("/view/pages/profileTeacher.jsp");
+        List<String> names = new ArrayList<String>();
+        for (Subject subject : dataProcessor.getAllData().getSubjects()) {
+            names.add(subject.getNameSubject());
+        }
+        model.put("allSubjects", dataProcessor.getAllData().getSubjects());
         if (idTeacher != null) {
             model.put("teacher", dataProcessor.findTeacher(idTeacher));
         } else {
