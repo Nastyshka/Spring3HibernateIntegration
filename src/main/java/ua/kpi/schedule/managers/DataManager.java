@@ -42,19 +42,19 @@ public class DataManager {
         return dataBundle;
     }
 
-    public Object findTeacher(int idTeacher) {
+    public Teacher findTeacher(int idTeacher) {
         return teacherDAO.find(idTeacher);
     }
 
-    public Object findClassroom(int idClassroom) {
+    public Classroom findClassroom(int idClassroom) {
         return classroomDAO.find(idClassroom);
     }
 
-    public Object findGroup(int idGroup) {
+    public Group findGroup(int idGroup) {
         return groupDAO.find(idGroup);
     }
 
-    public Object findSubject(int idSubject) {
+    public Subject findSubject(int idSubject) {
         return subjectDAO.find(idSubject);
     }
 

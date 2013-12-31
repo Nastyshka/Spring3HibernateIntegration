@@ -81,4 +81,13 @@
     <bean id="geneticUtil" class="ua.kpi.schedule.util.GeneticUtil"/>
 
     <bean id="constants" class="ua.kpi.schedule.util.Constants"/>
+
+    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+        <!--<property name="formatters">-->
+            <!--<set>-->
+                <!--<ref bean="subjectFormatter"/>-->
+            <!--</set>-->
+        <!--</property>-->
+    <!--</bean>-->
+
 </beans>

@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <td><form:label path="subjects">Предмети</form:label></td>
-            <td><form:select path="subjects" name="command.subjects" type="text" items="${allSubjects}" itemLabel="nameSubject"/></td>
+            <td><form:select path="subjects" type="text" items="${allSubjects}" itemLabel="nameSubject" itemValue="idSubject" multiple="true"/></td>
         </tr>
     </table>
     <input type="submit" value="Зберегти"/>

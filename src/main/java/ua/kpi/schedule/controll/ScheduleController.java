@@ -3,6 +3,7 @@ package ua.kpi.schedule.controll;
 import org.jgap.InvalidConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -133,7 +134,10 @@ public class ScheduleController {
 
     @RequestMapping(value = "/addTeacher.do", method = RequestMethod.POST)
     public String addTeacher(@ModelAttribute("teacher")
-                             Teacher teacher, Map<String, Object> model) {
+                             Teacher teacher, BindingResult result,  Map<String, Object> model) {
+        for (String id : (List<String>)model.get("subjects")) {
+            teacher.getSubjects().add(dataProcessor.findSubject(new Integer(id)));
+        }
         dataProcessor.saveTeacher(teacher);
         return "redirect:/list.do";
     }
