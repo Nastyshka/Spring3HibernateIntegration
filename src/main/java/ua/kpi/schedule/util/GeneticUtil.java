@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Value;
 import ua.kpi.schedule.dto.DataBundle;
+//import ua.kpi.schedule.ga.*;
 import ua.kpi.schedule.ga.*;
 import ua.kpi.schedule.model.*;
 import ua.kpi.schedule.managers.DataManager;
-import ua.kpi.schedule.ga.Start;
+//import ua.kpi.schedule.ga.Start;
 
 import java.util.ArrayList;
 import java.util.List;

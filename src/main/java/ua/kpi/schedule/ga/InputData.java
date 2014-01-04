@@ -34,13 +34,13 @@ public class InputData {
     NodeList firstElements = document.getElementsByTagName("timetable");
     Element firstElement = (Element)firstElements.item(0);
 
-    Constants.chromosomeSize =
-        Integer.parseInt(firstElement.getAttribute("chromosome_size"));
-    Constants.populationSize =
-        Integer.parseInt(firstElement.getAttribute("population_size"));
-    Start.MAX_EVOLUTIONS =
-        Integer.parseInt(firstElement.getAttribute("max_evolution"));
-    Constants.threshold = Integer.parseInt(firstElement.getAttribute("threshold"));
+//    Constants.chromosomeSize =
+//        Integer.parseInt(firstElement.getAttribute("chromosome_size"));
+//    Constants.populationSize =
+//        Integer.parseInt(firstElement.getAttribute("population_size"));
+//    Start.MAX_EVOLUTIONS =
+//        Integer.parseInt(firstElement.getAttribute("max_evolution"));
+//    Constants.threshold = Integer.parseInt(firstElement.getAttribute("threshold"));
     System.out.println("chromosome_size:" +
                        firstElement.getAttribute("chromosome_size") +
                        " population_size:" +
@@ -97,29 +97,29 @@ public class InputData {
     TeacherGene.setMax_idTeacher(teacherGenes.getLength());
     for (int i = 0; i < teacherGenes.getLength(); i++) {
       Element teacherGene = (Element)teacherGenes.item(i);
-      
+
       TeacherGene.setAll_avaliableLessons(
                     parseLine(teacherGene.getAttribute("avaliableLessons")), i);
       TeacherGene.setAll_avaliableTimeSlots(
                   parseLine(teacherGene.getAttribute("avaliableTimeSlots")), i);
       String buffer1 = "";
       String buffer2 = "";
-      
+
       for (Integer s : parseLine(teacherGene.getAttribute("avaliableLessons"))) {
         if( s != null ) buffer1 += s.toString();
       }
-      
+
       for (Integer s : parseLine(teacherGene.getAttribute("avaliableTimeSlots"))) {
         if( s != null )buffer2 += s.toString();
       }
-      
+
       System.out.println(teacherGene.getTagName() + ": idTeacherGene "+
-                         teacherGene.getAttribute("idTeacher") + 
+                         teacherGene.getAttribute("idTeacher") +
                          " avaliableLessons=" + buffer1+
                          " avaliableTimeSlots=" + buffer2
                          );
     }
-    
+
     //---------------------------------------------------------------------
     // Get lessonGene data
     NodeList lessonGenes = document.getElementsByTagName("lessonGene");
@@ -127,7 +127,7 @@ public class InputData {
     LessonGene.setMax_idLesson(lessonGenes.getLength());
     for (int i = 0; i < lessonGenes.getLength(); i++) {
       Element lessonGene = (Element)lessonGenes.item(i);
-      System.out.println(lessonGene.getTagName()+ ": idLessonGene=" + 
+      System.out.println(lessonGene.getTagName()+ ": idLessonGene=" +
                          lessonGene.getAttribute("idLesson"));
     }
 

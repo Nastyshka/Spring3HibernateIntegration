@@ -1,9 +1,11 @@
 package ua.kpi.schedule.ga;
 
 import org.jgap.*;
+import org.jgap.InvalidConfigurationException;
 import org.jgap.event.EventManager;
 import org.jgap.impl.BestChromosomesSelector;
 import org.jgap.impl.CrossoverOperator;
+import org.jgap.impl.DefaultConfiguration;
 import org.jgap.impl.StockRandomGenerator;
 import org.xml.sax.SAXException;
 import ua.kpi.schedule.util.Constants;
@@ -22,7 +24,7 @@ public class Start {
 
 
     public static void main() throws InvalidConfigurationException {
-        
+
         // Reading data from xml
         try {
             new InputData().readFromFile(XML_TEST_FILENAME);
@@ -33,15 +35,15 @@ public class Start {
         } catch (ParserConfigurationException e) {
             System.out.println(e.getMessage());
         }
-        
-        //Configuration conf = new DefaultConfiguration();
-        Configuration conf = new Configuration("myconf");
-        conf.reset();
+
+        Configuration conf = new DefaultConfiguration();
+//        Configuration conf = new Configuration("myconf");
+//        conf.reset();
         TimetableFitnessFunction fitnessFunction =
             new TimetableFitnessFunction();
         InitialConstraintChecker timetableConstraintChecker =
             new InitialConstraintChecker();
-        
+
         //Creating genes
         Gene[] testGenes = new Gene[Constants.chromosomeSize];
         for (int i = 0; i < Constants.chromosomeSize; i++) {
@@ -50,7 +52,7 @@ public class Start {
                                                                    new ClassGene(conf,1),
                                                                    new TeacherGene(conf,1),
                                                                    new LessonGene(conf,1),
-                                                                   new TimeGene(conf,1) 
+                                                                   new TimeGene(conf,1)
                                                                          });
         }
         System.out.println("==================================");
@@ -71,16 +73,16 @@ public class Start {
         conf.setEventManager(new EventManager());
         conf.setFitnessEvaluator(new DefaultFitnessEvaluator());
 
-        CrossoverOperator myCrossoverOperator = 
+        CrossoverOperator myCrossoverOperator =
             new CrossoverOperator(conf);
         conf.addGeneticOperator(myCrossoverOperator);
-        
+
         TimetableMutationOperator myMutationOperator =
             new TimetableMutationOperator(conf);
         conf.addGeneticOperator(myMutationOperator);
-        
+
         conf.setKeepPopulationSizeConstant(false);
-        
+
         //Creating genotype
 //        Population pop = new Population(conf, testChromosome);
 //        Genotype population = new Genotype(conf, pop);
@@ -88,10 +90,10 @@ public class Start {
 
         System.out.println("Our Chromosome: \n " +
                            testChromosome.getConfiguration().toString());
-        
+
         System.out.println("------------evolution-----------------------------");
-       
-       
+
+
         // Begin evolution
         Calendar cal = Calendar.getInstance();
         start_t = cal.getTimeInMillis();
@@ -105,7 +107,7 @@ public class Start {
         }
         cal = Calendar.getInstance();
         finish_t = cal.getTimeInMillis();
-                
+
         System.out.println("--------------end of evolution--------------------");
         Chromosome fittestChromosome =
             (Chromosome)population.getFittestChromosome();
@@ -124,15 +126,15 @@ public class Start {
         //GroupGene gg = (GroupGene)s.geneAt(GROUP);
         //System.out.println("gg's idGroup"+gg.getAllele()+" gg.getGroupSize()"+ gg.getGroupSize() );
         }
-        
-        System.out.println( "Elapsed time:"+ 
-                          (double)(finish_t - start_t)/1000 +"s");        
-        
+
+        System.out.println( "Elapsed time:"+
+                          (double)(finish_t - start_t)/1000 +"s");
+
         //Display the best solution
 
         OutputData od = new OutputData();
         od.printToConsole(fittestChromosome);
-        
+
         //Write population to the disk
 //        try {
 //          od.printToFile(population, GENOTYPE_FILENAME, BEST_CHROMOSOME_FILENAME);

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="1430877276">
-    <data-source source="LOCAL" name="scheduleDS" uuid="c88b9463-7196-4aa7-b5fd-0de24cec3cbf">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="scheduleDS" product="MySQL" version="5.6.14" jdbc-version="3.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )" uuid="c88b9463-7196-4aa7-b5fd-0de24cec3cbf">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/schedule_db</jdbc-url>
@@ -17,8 +18,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="dataSource3" uuid="e498155b-5bed-4409-a63f-1ea88a61b681">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="dataSource3" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="e498155b-5bed-4409-a63f-1ea88a61b681">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/schedule</jdbc-url>
       <user-name>root</user-name>

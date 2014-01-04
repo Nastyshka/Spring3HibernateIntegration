@@ -66,7 +66,7 @@ public class LessonGene extends IntegerGene implements Gene, Serializable {
   public void applyMutation(int a_index, double a_percentage) {
     setAllele( getConfiguration().getRandomGenerator().nextInt(max_idLesson) );
   }
-  
+
   public int compareTo(Object a_otherLessonGene) {
     if (a_otherLessonGene == null)
       return 1;
@@ -86,7 +86,7 @@ public class LessonGene extends IntegerGene implements Gene, Serializable {
     return a_otherLessonGene instanceof LessonGene &&
       compareTo(a_otherLessonGene) == 0;
   }
-  
+
   @Override
   public int hashCode() {
       return idLesson;

@@ -13,7 +13,7 @@
     <!---->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>WEB-INF/dispatcher-servlet.xml</param-value>
+        <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
     </context-param>
 
     <listener>
@@ -22,19 +22,19 @@
         </listener-class>
     </listener>
 
-    <!--<context-param>-->
-    <!--<param-name>Log4jExposeWebAppRoot</param-name>-->
-    <!--<param-value>false</param-value>-->
-    <!--</context-param>-->
+    <context-param>
+    <param-name>Log4jExposeWebAppRoot</param-name>
+    <param-value>false</param-value>
+    </context-param>
 
-    <!--<context-param>-->
-    <!--<param-name>log4jConfigLocation</param-name>-->
-    <!--<param-value>/WEB-INF/log4j.properties</param-value>-->
-    <!--</context-param>-->
+    <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/log4j.properties</param-value>
+    </context-param>
 
-    <!--<listener>-->
-    <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
-    <!--</listener>-->
+    <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>dispatcher</servlet-name>

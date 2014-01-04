@@ -48,6 +48,10 @@ public class GenericDAO <T>{
         return crit.list();
     }
 
+    public SessionFactory geteManager() {
+        return eManager;
+    }
+
     public void seteManager(SessionFactory eManager) {
         this.eManager = eManager;
     }

@@ -15,7 +15,7 @@ public class Constants {
 
     @Value("${chromosomeSize}")
     public static Integer chromosomeSize;
-    @Value("${populationSize")
+    @Value("${populationSize}")
     public static Integer populationSize;
     @Value("${maxEvolution}")
     public   static Integer maxEvolution;
