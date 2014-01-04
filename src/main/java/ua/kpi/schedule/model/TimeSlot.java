@@ -23,7 +23,7 @@ public class TimeSlot {
     private int lessonNumber;
     private String startTime;
     private String endTime;
-    private int dayOfWeek;
+    private String dayOfWeek;
     @OneToMany(mappedBy = "timeSlot")
     private List<Lesson> lessons;
 
@@ -74,11 +74,11 @@ public class TimeSlot {
         this.endTime = endTime;
     }
 
-    public int getDayOfWeek() {
+    public String getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(int dayOfWeek) {
+    public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 

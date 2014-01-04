@@ -29,22 +29,32 @@
     <span class="scroll"></span>
 
 </div>
-<form:form method="post" action="/timetable/addGroup.do" commandName="group">
-    <form:hidden path="idStudentGroup"/>
+<form:form method="post" action="/timetable/addTimeslot.do" commandName="timeslot">
+    <form:hidden path="idTimeSlot"/>
     <table>
         <tr>
-            <td><form:label path="nameGroup">Назва групи</form:label></td>
-            <td><form:input path="nameGroup" name="command.nameGroup" type="text" value="${command.nameGroup}"/></td>
+            <td><form:label path="lessonNumber">Номер пари</form:label></td>
+            <td><form:input path="lessonNumber" name="command.lessonNumber" type="text" value="${command.lessonNumber}"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="subjects">Предмети</form:label></td>
-            <td><form:select path="subjects" type="text" items="${allSubjects}" itemLabel="nameSubject" itemValue="idSubject" multiple="true"/></td>
+            <td><form:label path="dayOfWeek">День тижня</form:label></td>
+            <td><form:select path="dayOfWeek" type="text" items="${daysOfWeek}" multiple="false"/></td>
+        </tr>
+
+        <tr>
+            <td><form:label path="startTime">Початок пари</form:label></td>
+            <td><form:input path="startTime" name="command.startTime" type="text" value="${command.startTime}"/></td>
+        </tr>
+
+        <tr>
+            <td><form:label path="endTime">Початок пари</form:label></td>
+            <td><form:input path="endTime" name="command.endTime" type="text" value="${command.endTime}"/></td>
         </tr>
 
         <tr>
             <td colspan="2">
-                <input type="submit" value="Зберегти зміни"/>
+                <input type="submit" value="Зберегти"/>
             </td>
         </tr>
     </table>

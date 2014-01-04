@@ -104,5 +104,25 @@
 <form:form action="/timetable/profileTeacher.do" method="get">
     <input type="submit" value="Додати викладача"/>
 </form:form>
+
+<%--Timeslot--%>
+<c:if test="${not empty foundData.timeSlots}">
+    <h2>Розклад</h2>
+    <form>
+        <c:forEach items="${foundData.timeSlots}" var="timeslot">
+            <c:url value="/profileTimeslot.do" var="profileUrl">
+                <c:param name="selectedTimeslot" value="${timeslot.idTimeSlot}"/>
+            </c:url>
+            <a name="selected" href="${profileUrl}"/><c:out value="${timeslot.dayOfWeek}"/></a> </br>
+        </c:forEach>
+    </form>
+</c:if>
+
+<c:if test="${empty foundData.timeSlots}" >
+    <c:out value="Немає даних про розклад"/>
+</c:if>
+<form:form action="/timetable/profileTimeslot.do" method="get">
+    <input type="submit" value="Додати"/>
+</form:form>
 </body>
 </html>

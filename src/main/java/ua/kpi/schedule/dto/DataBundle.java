@@ -1,9 +1,6 @@
 package ua.kpi.schedule.dto;
 
-import ua.kpi.schedule.model.Classroom;
-import ua.kpi.schedule.model.Group;
-import ua.kpi.schedule.model.Subject;
-import ua.kpi.schedule.model.Teacher;
+import ua.kpi.schedule.model.*;
 
 import java.util.List;
 
@@ -19,6 +16,11 @@ public class DataBundle {
     private List<Subject> subjects;
     private List<Group> groups;
     private List<Classroom> classrooms;
+    private List<TimeSlot> timeSlots;
+
+    public List<TimeSlot> getTimeSlots() {
+        return timeSlots;
+    }
 
     public List<Classroom> getClassrooms() {
         return classrooms;
@@ -50,5 +52,9 @@ public class DataBundle {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+    public void setTimeSlots(List<TimeSlot> timeSlots) {
+        this.timeSlots = timeSlots;
     }
 }

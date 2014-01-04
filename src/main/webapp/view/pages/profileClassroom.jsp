@@ -28,7 +28,7 @@
     <a class="back" href=""></a>
     <span class="scroll"></span>
 
-    <h1>Додати новий предмет</h1>
+    <h1>Аудиторія</h1>
 
 </div>
 <form:form method="post" action="/timetable/addClassroom.do" commandName="classroom">

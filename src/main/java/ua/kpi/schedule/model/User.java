@@ -14,21 +14,11 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @NoArgsConstructor
 public class User implements Serializable{
-    protected String nameUser;
+
     protected String secondName;
     protected String login;
     protected String password;
-    protected String eMail;
-    protected String telephoneNumber;
     protected String Adress;
-
-    public String getNameUser() {
-        return nameUser;
-    }
-
-    public void setNameUser(String nameUser) {
-        this.nameUser = nameUser;
-    }
 
     public String getSecondName() {
         return secondName;
@@ -52,22 +42,6 @@ public class User implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String geteMail() {
-        return eMail;
-    }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
-    }
-
-    public String getTelephoneNumber() {
-        return telephoneNumber;
-    }
-
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
     }
 
     public String getAdress() {

@@ -4,6 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -74,6 +75,10 @@
         <property name="eManager" ref="sessionFactory"/>
     </bean>
 
+    <bean id="timeslotDAO" class="ua.kpi.schedule.dao.TimeslotDAO" name="timeslotDAO">
+        <property name="eManager" ref="sessionFactory"/>
+    </bean>
+
     <bean id="timeSlotHandler" class="ua.kpi.schedule.model.TimeSlotHandler"/>
 
     <bean id="dataManager" class="ua.kpi.schedule.managers.DataManager"/>
@@ -82,12 +87,14 @@
 
     <bean id="constants" class="ua.kpi.schedule.util.Constants"/>
 
-    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
-        <!--<property name="formatters">-->
-            <!--<set>-->
-                <!--<ref bean="subjectFormatter"/>-->
-            <!--</set>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <mvc:annotation-driven/>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <ref bean="subjectConverter"/>
+                <ref bean="timeslotConverter"/>
+            </set>
+        </property>
+    </bean>
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
 </beans>

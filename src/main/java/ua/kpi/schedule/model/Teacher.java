@@ -34,13 +34,22 @@ public class Teacher extends User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Lesson> lessons;
 
-    //TODO: temporary solution
-    @Transient
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable
+            (name = "TEACHER_AVAILABLE_TS",
+                    joinColumns =
+                            {@JoinColumn(name="TEACHER_ID")},
+                    inverseJoinColumns =
+                            {@JoinColumn(name = "TS_ID")})
     private List<TimeSlot> availableTimeslots;
 
     public List<TimeSlot> getAvailableTimeslots() {
         return availableTimeslots;
     }
+
+    protected String nameUser;
+    protected String eMail;
+    protected String telephoneNumber;
 
     public void setAvailableTimeslots(List<TimeSlot> availableTimeslots) {
         this.availableTimeslots = availableTimeslots;
@@ -76,6 +85,30 @@ public class Teacher extends User {
 
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 
     public Teacher() {

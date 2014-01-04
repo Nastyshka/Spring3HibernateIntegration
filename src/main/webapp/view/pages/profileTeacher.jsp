@@ -52,6 +52,11 @@
             <td><form:label path="subjects">Предмети</form:label></td>
             <td><form:select path="subjects" type="text" items="${allSubjects}" itemLabel="nameSubject" itemValue="idSubject" multiple="true"/></td>
         </tr>
+
+        <tr>
+            <td><form:label path="availableTimeslots">Вільні пари</form:label></td>
+            <td><form:select path="availableTimeslots" type="text" items="${allTimeslots}" itemLabel="${dayOfWeek + lessonNumber}" itemValue="idTimeSlot" multiple="true"/></td>
+        </tr>
     </table>
     <input type="submit" value="Зберегти"/>
 </form:form>

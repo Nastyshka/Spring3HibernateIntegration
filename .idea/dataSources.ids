@@ -21,15 +21,16 @@
       <column name="CLASSROOM_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="address" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <column name="number" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="size" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <column name="type" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="CLASSROOM_ID"/>
-      <exported-key name="FK87759958A2ADA280" table="lesson" schema="" catalog="schedule_db" columns="CLASSROOM_ID"/>
+      <exported-key name="FK8775995844D8120A" table="lesson" schema="" catalog="schedule_db" columns="CLASSROOM_ID"/>
     </table>
     <table name="group_subject" schema="" catalog="schedule_db" type="TABLE">
       <column name="SUBJECT_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="STUDENT_GROUP_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
-      <foreign-key name="FK499BB72C2C3B6784" columns="STUDENT_GROUP_ID" ref-table="student_groups" ref-schema="" ref-catalog="schedule_db" ref-columns="STUDENT_GROUP_ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK499BB72CB983B960" columns="SUBJECT_ID" ref-table="subject" ref-schema="" ref-catalog="schedule_db" ref-columns="SUBJECT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK499BB72C3E4F2C0E" columns="STUDENT_GROUP_ID" ref-table="student_groups" ref-schema="" ref-catalog="schedule_db" ref-columns="STUDENT_GROUP_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK499BB72C95B8836A" columns="SUBJECT_ID" ref-table="subject" ref-schema="" ref-catalog="schedule_db" ref-columns="SUBJECT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="lesson" schema="" catalog="schedule_db" type="TABLE">
       <column name="LESSON_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -38,49 +39,74 @@
       <column name="STUDENT_GROUP_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <column name="SUBJECT_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <column name="TEACHER_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="TIMESLOT_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="LESSON_ID"/>
-      <foreign-key name="FK87759958AE1AB5A0" columns="TEACHER_ID" ref-table="teacher" ref-schema="" ref-catalog="schedule_db" ref-columns="TEACHER_ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK877599582C3B6784" columns="STUDENT_GROUP_ID" ref-table="student_groups" ref-schema="" ref-catalog="schedule_db" ref-columns="STUDENT_GROUP_ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK87759958A2ADA280" columns="CLASSROOM_ID" ref-table="classroom" ref-schema="" ref-catalog="schedule_db" ref-columns="CLASSROOM_ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK87759958B983B960" columns="SUBJECT_ID" ref-table="subject" ref-schema="" ref-catalog="schedule_db" ref-columns="SUBJECT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK877599588A4F7FAA" columns="TEACHER_ID" ref-table="teacher" ref-schema="" ref-catalog="schedule_db" ref-columns="TEACHER_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK877599583E4F2C0E" columns="STUDENT_GROUP_ID" ref-table="student_groups" ref-schema="" ref-catalog="schedule_db" ref-columns="STUDENT_GROUP_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK8775995844D8120A" columns="CLASSROOM_ID" ref-table="classroom" ref-schema="" ref-catalog="schedule_db" ref-columns="CLASSROOM_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK877599588D9932CA" columns="TIMESLOT_ID" ref-table="timeslot" ref-schema="" ref-catalog="schedule_db" ref-columns="idTimeSlot" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK8775995895B8836A" columns="SUBJECT_ID" ref-table="subject" ref-schema="" ref-catalog="schedule_db" ref-columns="SUBJECT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="student" schema="" catalog="schedule_db" type="TABLE">
       <column name="STUDENT_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="STUDENTGROUP_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="STUDENT_ID"/>
-      <foreign-key name="FKF3371A1B9ED77D3B" columns="STUDENTGROUP_ID" ref-table="student_groups" ref-schema="" ref-catalog="schedule_db" ref-columns="STUDENT_GROUP_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKF3371A1BB0EB41C5" columns="STUDENTGROUP_ID" ref-table="student_groups" ref-schema="" ref-catalog="schedule_db" ref-columns="STUDENT_GROUP_ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="student_groups" schema="" catalog="schedule_db" type="TABLE">
       <column name="STUDENT_GROUP_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="nameGroup" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="size" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="STUDENT_GROUP_ID"/>
-      <exported-key name="FK499BB72C2C3B6784" table="group_subject" schema="" catalog="schedule_db" columns="STUDENT_GROUP_ID"/>
-      <exported-key name="FK877599582C3B6784" table="lesson" schema="" catalog="schedule_db" columns="STUDENT_GROUP_ID"/>
-      <exported-key name="FKF3371A1B9ED77D3B" table="student" schema="" catalog="schedule_db" columns="STUDENTGROUP_ID"/>
+      <exported-key name="FK499BB72C3E4F2C0E" table="group_subject" schema="" catalog="schedule_db" columns="STUDENT_GROUP_ID"/>
+      <exported-key name="FK877599583E4F2C0E" table="lesson" schema="" catalog="schedule_db" columns="STUDENT_GROUP_ID"/>
+      <exported-key name="FKF3371A1BB0EB41C5" table="student" schema="" catalog="schedule_db" columns="STUDENTGROUP_ID"/>
     </table>
     <table name="subject" schema="" catalog="schedule_db" type="TABLE">
       <column name="SUBJECT_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="amountLaboratory" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="amountLections" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="amountPractices" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="description" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <column name="nameSubject" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="SUBJECT_ID"/>
-      <exported-key name="FK499BB72CB983B960" table="group_subject" schema="" catalog="schedule_db" columns="SUBJECT_ID"/>
-      <exported-key name="FK87759958B983B960" table="lesson" schema="" catalog="schedule_db" columns="SUBJECT_ID"/>
-      <exported-key name="FK5EBB5A6EB983B960" table="teacher_track" schema="" catalog="schedule_db" columns="SUBJECT_ID"/>
+      <exported-key name="FK499BB72C95B8836A" table="group_subject" schema="" catalog="schedule_db" columns="SUBJECT_ID"/>
+      <exported-key name="FK8775995895B8836A" table="lesson" schema="" catalog="schedule_db" columns="SUBJECT_ID"/>
+      <exported-key name="FK5EBB5A6E95B8836A" table="teacher_track" schema="" catalog="schedule_db" columns="SUBJECT_ID"/>
     </table>
     <table name="teacher" schema="" catalog="schedule_db" type="TABLE">
       <column name="TEACHER_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="academicTitle" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="eMail" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="nameUser" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="telephoneNumber" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="TEACHER_ID"/>
-      <exported-key name="FK87759958AE1AB5A0" table="lesson" schema="" catalog="schedule_db" columns="TEACHER_ID"/>
-      <exported-key name="FK5EBB5A6EAE1AB5A0" table="teacher_track" schema="" catalog="schedule_db" columns="TEACHER_ID"/>
+      <exported-key name="FK877599588A4F7FAA" table="lesson" schema="" catalog="schedule_db" columns="TEACHER_ID"/>
+      <exported-key name="FKFBB0A5328A4F7FAA" table="teacher_available_ts" schema="" catalog="schedule_db" columns="TEACHER_ID"/>
+      <exported-key name="FK5EBB5A6E8A4F7FAA" table="teacher_track" schema="" catalog="schedule_db" columns="TEACHER_ID"/>
+    </table>
+    <table name="teacher_available_ts" schema="" catalog="schedule_db" type="TABLE">
+      <column name="TEACHER_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="TS_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="FKFBB0A5328A4F7FAA" columns="TEACHER_ID" ref-table="teacher" ref-schema="" ref-catalog="schedule_db" ref-columns="TEACHER_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKFBB0A5324B6CD616" columns="TS_ID" ref-table="timeslot" ref-schema="" ref-catalog="schedule_db" ref-columns="idTimeSlot" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="teacher_track" schema="" catalog="schedule_db" type="TABLE">
       <column name="TEACHER_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="SUBJECT_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
-      <foreign-key name="FK5EBB5A6EAE1AB5A0" columns="TEACHER_ID" ref-table="teacher" ref-schema="" ref-catalog="schedule_db" ref-columns="TEACHER_ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK5EBB5A6EB983B960" columns="SUBJECT_ID" ref-table="subject" ref-schema="" ref-catalog="schedule_db" ref-columns="SUBJECT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK5EBB5A6E8A4F7FAA" columns="TEACHER_ID" ref-table="teacher" ref-schema="" ref-catalog="schedule_db" ref-columns="TEACHER_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK5EBB5A6E95B8836A" columns="SUBJECT_ID" ref-table="subject" ref-schema="" ref-catalog="schedule_db" ref-columns="SUBJECT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="timeslot" schema="" catalog="schedule_db" type="TABLE">
+      <column name="idTimeSlot" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="dayOfWeek" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="endTime" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="lessonNumber" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="startTime" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="timeslotNumber" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idTimeSlot"/>
+      <exported-key name="FK877599588D9932CA" table="lesson" schema="" catalog="schedule_db" columns="TIMESLOT_ID"/>
+      <exported-key name="FKFBB0A5324B6CD616" table="teacher_available_ts" schema="" catalog="schedule_db" columns="TS_ID"/>
     </table>
   </data-source>
   <data-source source="LOCAL" name="dataSource3" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="e498155b-5bed-4409-a63f-1ea88a61b681">

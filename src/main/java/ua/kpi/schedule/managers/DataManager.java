@@ -1,16 +1,13 @@
 package ua.kpi.schedule.managers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
-import ua.kpi.schedule.dao.ClassroomDAO;
-import ua.kpi.schedule.dao.GroupDAO;
-import ua.kpi.schedule.dao.SubjectDAO;
-import ua.kpi.schedule.dao.TeacherDAO;
+import ua.kpi.schedule.dao.*;
 import ua.kpi.schedule.dto.DataBundle;
-import ua.kpi.schedule.model.Classroom;
-import ua.kpi.schedule.model.Group;
-import ua.kpi.schedule.model.Subject;
-import ua.kpi.schedule.model.Teacher;
+import ua.kpi.schedule.model.*;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +17,10 @@ import ua.kpi.schedule.model.Teacher;
  * To change this template use File | Settings | File Templates.
  */
 public class DataManager {
+
+    @Autowired
+    private TimeslotDAO timeslotDAO;
+
     @Autowired
     private TeacherDAO teacherDAO;
 
@@ -32,6 +33,9 @@ public class DataManager {
     @Autowired
     private ClassroomDAO classroomDAO;
 
+    @Value("${daysOfWeek}")
+    private List<String> daysOfWeek;
+
     @Transactional
     public DataBundle getAllData(){
         DataBundle dataBundle = new DataBundle();
@@ -39,6 +43,7 @@ public class DataManager {
         dataBundle.setSubjects(subjectDAO.getAll());
         dataBundle.setTeachers(teacherDAO.getAll());
         dataBundle.setClassrooms(classroomDAO.getAll());
+        dataBundle.setTimeSlots(timeslotDAO.getAll());
         return dataBundle;
     }
 
@@ -109,5 +114,29 @@ public class DataManager {
 
     public void saveSubject(Subject subject) {
         subjectDAO.save(subject);
+    }
+
+    public void saveTimeslot(TimeSlot timeslot) {
+        timeslotDAO.save(timeslot);
+    }
+
+    public TimeSlot findTimeslot(Integer selectedTimeslot) {
+        return timeslotDAO.find(selectedTimeslot);
+    }
+
+    public List<String> getDaysOfWeek() {
+        return daysOfWeek;
+    }
+
+    public void setDaysOfWeek(List<String> daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
+    }
+
+    public TimeslotDAO getTimeslotDAO() {
+        return timeslotDAO;
+    }
+
+    public void setTimeslotDAO(TimeslotDAO timeslotDAO) {
+        this.timeslotDAO = timeslotDAO;
     }
 }

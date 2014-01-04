@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.kpi.schedule.model.Classroom;
-import ua.kpi.schedule.model.Group;
-import ua.kpi.schedule.model.Subject;
-import ua.kpi.schedule.model.Teacher;
+import ua.kpi.schedule.model.*;
 import ua.kpi.schedule.managers.DataManager;
 
 import java.util.ArrayList;
@@ -27,15 +24,6 @@ public class ScheduleController {
 
     @Autowired
     private DataManager dataProcessor;
-    private Subject command;
-
-    public Subject getCommand() {
-        return command;
-    }
-
-    public void setCommand(Subject command) {
-        this.command = command;
-    }
 
     /**
      * Controller method for home page
@@ -62,21 +50,32 @@ public class ScheduleController {
 
     @RequestMapping(value = "/profileSubject.do", method = RequestMethod.GET)
     public String profileSubject (Map<String, Object> model, @RequestParam(value = "selectedSubject", required = false) Integer selectedSubject){
-    if(selectedSubject!=null){
-          model.put("subject", dataProcessor.findSubject(selectedSubject));
-    } else {
-        model.put("subject", new Subject());
+        if(selectedSubject!=null){
+              model.put("subject", dataProcessor.findSubject(selectedSubject));
+        } else {
+            model.put("subject", new Subject());
+        }
+        return "/view/pages/profileSubject.jsp";
     }
-    return "/view/pages/profileSubject.jsp";
-}
+
+    @RequestMapping(value = "/profileTimeslot.do", method = RequestMethod.GET)
+    public String profileTimeslot(Map<String, Object> model, @RequestParam(value = "selectedTimeslot", required = false) Integer selectedTimeslot){
+        model.put("daysOfWeek", dataProcessor.getDaysOfWeek());
+        if(selectedTimeslot!=null){
+            model.put("timeslot", dataProcessor.findTimeslot(selectedTimeslot));
+        } else {
+            model.put("timeslot", new TimeSlot());
+        }
+        return "/view/pages/profileTimeslot.jsp";
+    }
 
     @RequestMapping("/profileTeacher.do")
     public String profileTeacher(Map<String, Object> model, @RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
-//        ModelAndView modelAndView = new ModelAndView("/view/pages/profileTeacher.jsp");
         List<String> names = new ArrayList<String>();
         for (Subject subject : dataProcessor.getAllData().getSubjects()) {
             names.add(subject.getNameSubject());
         }
+        model.put("allTimeslots", dataProcessor.getAllData().getTimeSlots());
         model.put("allSubjects", dataProcessor.getAllData().getSubjects());
         if (idTeacher != null) {
             model.put("teacher", dataProcessor.findTeacher(idTeacher));
@@ -100,6 +99,7 @@ public class ScheduleController {
     @RequestMapping(value = "/profileGroup.do", method = RequestMethod.GET)
     public String profileGroup
             (@RequestParam(value = "selectedGroup", required = false) Integer idGroup, Map<String, Object> model) {
+        model.put("allSubjects", dataProcessor.getAllData().getSubjects());
 //        ModelAndView modelAndView = new ModelAndView("/view/pages/profileGroup.jsp");
         if (idGroup != null) {
             model.put("group", dataProcessor.findGroup(idGroup));
@@ -134,10 +134,17 @@ public class ScheduleController {
     @RequestMapping(value = "/addTeacher.do", method = RequestMethod.POST)
     public String addTeacher(@ModelAttribute("teacher")
                              Teacher teacher, BindingResult result,  Map<String, Object> model) {
-        for (String id : (List<String>)model.get("subjects")) {
-            teacher.getSubjects().add(dataProcessor.findSubject(new Integer(id)));
-        }
+//        for (String id : (List<String>)model.get("subjects")) {
+//            teacher.getSubjects().add(dataProcessor.findSubject(new Integer(id)));
+//        }
         dataProcessor.saveTeacher(teacher);
+        return "redirect:/list.do";
+    }
+
+    @RequestMapping(value = "/addTimeslot.do", method = RequestMethod.POST)
+    public String addTimeslot(@ModelAttribute("timeslot")
+                                  TimeSlot timeslot, BindingResult result,  Map<String, Object> model) {
+        dataProcessor.saveTimeslot(timeslot);
         return "redirect:/list.do";
     }
 }
