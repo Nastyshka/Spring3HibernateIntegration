@@ -66,4 +66,13 @@
         <filter-name>charsetFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <jsp-config>
+        <jsp-property-group>
+            <display-name>All jsp files</display-name>
+            <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jsps</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
 </web-app>

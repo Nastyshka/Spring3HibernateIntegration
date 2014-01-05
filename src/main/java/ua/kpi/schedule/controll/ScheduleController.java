@@ -1,5 +1,6 @@
 package ua.kpi.schedule.controll;
 
+import org.jgap.InvalidConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import ua.kpi.schedule.ga.Start;
 import ua.kpi.schedule.model.*;
 import ua.kpi.schedule.managers.DataManager;
 
@@ -24,7 +26,8 @@ public class ScheduleController {
 
     @Autowired
     private DataManager dataProcessor;
-
+    @Autowired
+    private Start start;
     /**
      * Controller method for home page
      *
@@ -41,10 +44,10 @@ public class ScheduleController {
      * @return ModelAndView
      */
     @RequestMapping("/list.do")
-    public ModelAndView foundAllData()/* throws InvalidConfigurationException*/ {
+    public ModelAndView foundAllData() throws InvalidConfigurationException/* throws InvalidConfigurationException*/ {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
         modelAndView.addObject("foundData", dataProcessor.getAllData());
-//        Start.main();
+        start.main();
         return modelAndView;
     }
 

@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +24,7 @@ public class Teacher extends User {
 
     private String academicTitle;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable
             (name = "TEACHER_TRACK",
             joinColumns =
@@ -34,7 +36,7 @@ public class Teacher extends User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Lesson> lessons;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL)  @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable
             (name = "TEACHER_AVAILABLE_TS",
                     joinColumns =

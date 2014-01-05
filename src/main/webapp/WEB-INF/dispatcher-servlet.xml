@@ -15,7 +15,9 @@
 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="/WEB-INF/timetable.properties"></bean>
+          p:location="/WEB-INF/timetable.properties">
+        <property name="fileEncoding" value="UTF-8"/>
+          </bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     </bean>
@@ -85,7 +87,7 @@
 
     <bean id="geneticUtil" class="ua.kpi.schedule.util.GeneticUtil"/>
 
-    <bean id="constants" class="ua.kpi.schedule.util.Constants"/>
+    <bean id="start" class="ua.kpi.schedule.ga.Start"/>
 
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">

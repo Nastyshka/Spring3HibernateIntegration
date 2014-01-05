@@ -19,6 +19,9 @@ public class DataBundle {
     private List<TimeSlot> timeSlots;
 
     public List<TimeSlot> getTimeSlots() {
+        for (TimeSlot timeSlot: timeSlots){
+            timeSlot.setDayLesson();
+        }
         return timeSlots;
     }
 

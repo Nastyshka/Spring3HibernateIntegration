@@ -1,13 +1,8 @@
 package ua.kpi.schedule.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -26,6 +21,8 @@ public class TimeSlot {
     private String dayOfWeek;
     @OneToMany(mappedBy = "timeSlot")
     private List<Lesson> lessons;
+    @Transient
+    private String getDayLesson;
 
     TimeSlot(int i) {
         this.timeslotNumber = i;
@@ -51,10 +48,12 @@ public class TimeSlot {
     }
 
     public int getLessonNumber() {
+        setDayLesson();
         return lessonNumber;
     }
 
     public void setLessonNumber(int lessonNumber) {
+        setDayLesson();
         this.lessonNumber = lessonNumber;
     }
 
@@ -75,10 +74,12 @@ public class TimeSlot {
     }
 
     public String getDayOfWeek() {
+        setDayLesson();
         return dayOfWeek;
     }
 
     public void setDayOfWeek(String dayOfWeek) {
+        setDayLesson();
         this.dayOfWeek = dayOfWeek;
     }
 
@@ -88,5 +89,13 @@ public class TimeSlot {
 
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
+    }
+
+    public void setDayLesson(){
+        getDayLesson = this.dayOfWeek + "-" + this.lessonNumber;
+    }
+
+    public String getGetDayLesson() {
+        return getDayLesson;
     }
 }

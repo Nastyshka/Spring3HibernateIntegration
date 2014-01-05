@@ -28,7 +28,7 @@
     <a class="back" href=""></a>
     <span class="scroll"></span>
 
-    <h1>Створити профайл викладача</h1>
+    <h1>Профайл викладача</h1>
 </div>
 
 <form:form method="post" action="/timetable/addTeacher.do" commandName="teacher">
@@ -55,7 +55,10 @@
 
         <tr>
             <td><form:label path="availableTimeslots">Вільні пари</form:label></td>
-            <td><form:select path="availableTimeslots" type="text" items="${allTimeslots}" itemLabel="${dayOfWeek + lessonNumber}" itemValue="idTimeSlot" multiple="true"/></td>
+            <td><form:select path="availableTimeslots" type="text" items="${allTimeslots}" itemLabel="getDayLesson" itemValue="idTimeSlot" multiple="true">
+
+                </form:select>
+            </td>
         </tr>
     </table>
     <input type="submit" value="Зберегти"/>

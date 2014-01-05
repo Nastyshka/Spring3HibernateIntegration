@@ -7,8 +7,10 @@ import org.jgap.impl.BestChromosomesSelector;
 import org.jgap.impl.CrossoverOperator;
 import org.jgap.impl.DefaultConfiguration;
 import org.jgap.impl.StockRandomGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.xml.sax.SAXException;
 import ua.kpi.schedule.util.Constants;
+import ua.kpi.schedule.util.GeneticUtil;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -21,24 +23,26 @@ public class Start {
     private static final String XML_TEST_FILENAME = "K:\\inputTimetable.xml";
     private static long start_t = 0;
     private static long finish_t = 0;
+    @Autowired
+    GeneticUtil geneticUtil;
 
-
-    public static void main() throws InvalidConfigurationException {
+    public void main() throws InvalidConfigurationException {
 
         // Reading data from xml
-        try {
-            new InputData().readFromFile(XML_TEST_FILENAME);
-        } catch (SAXException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (ParserConfigurationException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            new InputData().readFromFile(XML_TEST_FILENAME);
+//        } catch (SAXException e) {
+//            System.out.println(e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        } catch (ParserConfigurationException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-        Configuration conf = new DefaultConfiguration();
-//        Configuration conf = new Configuration("myconf");
-//        conf.reset();
+        geneticUtil.setUpGenes();
+//        Configuration conf = new DefaultConfiguration();
+        Configuration conf = new Configuration("myconf");
+        conf.reset();
         TimetableFitnessFunction fitnessFunction =
             new TimetableFitnessFunction();
         InitialConstraintChecker timetableConstraintChecker =
@@ -131,9 +135,9 @@ public class Start {
                           (double)(finish_t - start_t)/1000 +"s");
 
         //Display the best solution
-
-        OutputData od = new OutputData();
-        od.printToConsole(fittestChromosome);
+        geneticUtil.extractLessonsDataFromChromosome(fittestChromosome);
+//        OutputData od = new OutputData();
+//        od.printToConsole(fittestChromosome);
 
         //Write population to the disk
 //        try {

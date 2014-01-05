@@ -113,7 +113,7 @@
             <c:url value="/profileTimeslot.do" var="profileUrl">
                 <c:param name="selectedTimeslot" value="${timeslot.idTimeSlot}"/>
             </c:url>
-            <a name="selected" href="${profileUrl}"/><c:out value="${timeslot.dayOfWeek}"/></a> </br>
+            <a name="selected" href="${profileUrl}"/>${timeslot.dayOfWeek}-${timeslot.lessonNumber}</a> </br>
         </c:forEach>
     </form>
 </c:if>
