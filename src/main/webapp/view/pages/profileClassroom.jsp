@@ -43,8 +43,8 @@
             <td><form:input path="address" name="classroom.address" type="text" value="${command.address}"/></td>
         </tr>
         <tr>
-            <td><form:label path="type">Тип аудиторії</form:label></td>
-            <td><form:input path="type" name="classroom.type" type="text" value="${command.type}"/></td>
+            <td><form:label path="type">Тип аудиторії (розмір)</form:label></td>
+            <td><form:input path="type" name="classroom.size" type="text" value="${command.size}"/></td>
         </tr>
         <tr>
             <td colspan="2">
