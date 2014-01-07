@@ -3,6 +3,7 @@ package ua.kpi.schedule.controll;
 import org.jgap.InvalidConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,7 @@ public class ScheduleController {
     public ModelAndView foundAllData() throws InvalidConfigurationException/* throws InvalidConfigurationException*/ {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
         modelAndView.addObject("foundData", dataProcessor.getAllData());
-        start.main();
+//        start.main();
         return modelAndView;
     }
 
@@ -149,5 +150,21 @@ public class ScheduleController {
                                   TimeSlot timeslot, BindingResult result,  Map<String, Object> model) {
         dataProcessor.saveTimeslot(timeslot);
         return "redirect:/list.do";
+    }
+
+    @RequestMapping(value = "/login.do", method = RequestMethod.GET)
+    public String login(ModelMap model) {
+        return "/view/pages/login.jsp";
+    }
+
+    @RequestMapping(value = "/view/pages/denied.jsp", method = RequestMethod.GET)
+    public String loginerror(ModelMap model) {
+        model.addAttribute("error", "true");
+        return "/view/pages/denied.jsp";
+    }
+
+    @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+    public String logout(ModelMap model) {
+        return "/view/pages/logout.jsp";
     }
 }

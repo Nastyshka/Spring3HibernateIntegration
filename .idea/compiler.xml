@@ -22,11 +22,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="Spring3HibernateIntegration" />
         <module name="Timetable" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7" />
   </component>
 </project>
 
