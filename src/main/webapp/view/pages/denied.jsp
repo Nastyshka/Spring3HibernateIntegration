@@ -14,6 +14,6 @@
 </c:if>
 
 <p class="message">Access denied!</p>
-<a href="/Spring3HibernateIntegration/login">Go back to login page</a>
+<a href="/timetable/login.do">Go back to login page</a>
 </body>
 </html>

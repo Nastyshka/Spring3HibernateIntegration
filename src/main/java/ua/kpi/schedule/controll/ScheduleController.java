@@ -154,17 +154,25 @@ public class ScheduleController {
 
     @RequestMapping(value = "/login.do", method = RequestMethod.GET)
     public String login(ModelMap model) {
-        return "/view/pages/login.jsp";
+        return "/login";
     }
 
-    @RequestMapping(value = "/view/pages/denied.jsp", method = RequestMethod.GET)
-    public String loginerror(ModelMap model) {
-        model.addAttribute("error", "true");
-        return "/view/pages/denied.jsp";
-    }
+//    @RequestMapping(value = "/view/pages/denied.jsp", method = RequestMethod.GET)
+//    public String loginerror(ModelMap model) {
+//        model.addAttribute("error", "true");
+//        return "/view/pages/denied.jsp";
+//    }
 
     @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
     public String logout(ModelMap model) {
         return "/view/pages/logout.jsp";
+    }
+
+    @RequestMapping(value="/loginfailed.do", method = RequestMethod.GET)
+    public String loginerror(ModelMap model) {
+
+        model.addAttribute("error", "true");
+        return "login";
+
     }
 }

@@ -14,10 +14,10 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
         <intercept-url pattern="/login" access="permitAll" />
         <intercept-url pattern="/logout" access="permitAll" />
         <intercept-url pattern="/accessdenied" access="permitAll" />
-        <intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/list*" access="hasRole('ROLE_USER')" />
         <form-login login-page="/view/pages/login.jsp" default-target-url="/list.do" authentication-failure-url="/view/pages/denied.jsp" />
         <!--<form-login login-page="/login.do" default-target-url="/list.do" authentication-failure-url="/accessdenied.do" />-->
-        <logout logout-success-url="/view/pages/logout.jsp" />
+        <logout logout-success-url="/view/pages/index.jsp" />
 
     </http>
 
