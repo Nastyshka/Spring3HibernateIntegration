@@ -48,7 +48,7 @@ public class ScheduleController {
     public ModelAndView foundAllData() throws InvalidConfigurationException/* throws InvalidConfigurationException*/ {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
         modelAndView.addObject("foundData", dataProcessor.getAllData());
-//        start.main();
+        start.main();
         return modelAndView;
     }
 

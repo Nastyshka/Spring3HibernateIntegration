@@ -27,7 +27,7 @@
 
 <div id="header">
     <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>КПИяшка</h1>
+    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>Інститут післядипломної освіти КПІ</h1>
     <hr>
 </div>
 

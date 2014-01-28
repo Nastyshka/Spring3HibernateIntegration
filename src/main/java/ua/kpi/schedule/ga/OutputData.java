@@ -10,6 +10,9 @@ import org.jgap.Chromosome;
 import org.jgap.Genotype;
 import org.jgap.xml.XMLManager;
 import org.w3c.dom.Document;
+import ua.kpi.schedule.ga.genes.GroupClassTeacherLessonTimeSG;
+import ua.kpi.schedule.ga.genes.GroupGene;
+import ua.kpi.schedule.ga.genes.TimeGene;
 import ua.kpi.schedule.util.Constants;
 import ua.kpi.schedule.util.GeneticUtil;
 
@@ -29,12 +32,12 @@ class OutputData {
 
     }
 
-//    void printToFile(Genotype a_currentPopulation,
-//                     String a_savePopulationToFilename,
-//                     String a_saveBestChromosomeToFilename ) throws IOException {
-//        //Convert Genotype to a DOM object
-//        Document xmlRepresentation =
-//            XMLManager.representGenotypeAsDocument(a_currentPopulation);
+    void printToFile(Genotype a_currentPopulation,
+                     String a_savePopulationToFilename,
+                     String a_saveBestChromosomeToFilename ) throws IOException {
+        //Convert Genotype to a DOM object
+        Document xmlRepresentation =
+            XMLManager.representGenotypeAsDocument(a_currentPopulation);
 //
 //        Writer genotypetWriter = new FileWriter(a_savePopulationToFilename);
 //
@@ -60,6 +63,31 @@ class OutputData {
 //        chromosomeDocumentSerializer.serialize(bestChromosomeXMLRepresentation);
 //        chromosomeWriter.close();
 //    }
+
+        Writer genotypetWriter = new FileWriter(a_savePopulationToFilename);
+
+        OutputFormat formatting =
+            new OutputFormat(xmlRepresentation, "UTF-8", true);
+        SerializerFactory factory =
+            SerializerFactory.getSerializerFactory(Method.XML);
+        Serializer genotypeGenericSerializer =
+            factory.makeSerializer(genotypetWriter, formatting);
+        DOMSerializer genotypeDocumentSerializer = genotypeGenericSerializer.asDOMSerializer();
+
+        genotypeDocumentSerializer.serialize(xmlRepresentation);
+        genotypetWriter.close();
+
+        //Convert bestChromosome to a DOM object
+        Document bestChromosomeXMLRepresentation =
+            XMLManager.representChromosomeAsDocument(a_currentPopulation.getFittestChromosome());
+        Writer chromosomeWriter = new FileWriter( a_saveBestChromosomeToFilename );
+
+        Serializer chromosomeGenericSerializer =
+          factory.makeSerializer(chromosomeWriter, formatting);
+        DOMSerializer chromosomeDocumentSerializer = chromosomeGenericSerializer.asDOMSerializer();
+        chromosomeDocumentSerializer.serialize(bestChromosomeXMLRepresentation);
+        chromosomeWriter.close();
+    }
 
     void printToConsole(Chromosome a_bestChromosome) {
 
@@ -102,8 +130,8 @@ class OutputData {
             }
         }
 
-        GeneticUtil geneticUtil = new GeneticUtil();
-        geneticUtil.extractLessonsDataFromChromosome(a_bestChromosome);
+//        GeneticUtil geneticUtil = new GeneticUtil();
+//        geneticUtil.extractLessonsDataFromChromosome(a_bestChromosome);
         // Printing str[][] array
         System.out.println("------------------------------");
         System.out.println("-----Lesson/Teacher/Class-----");

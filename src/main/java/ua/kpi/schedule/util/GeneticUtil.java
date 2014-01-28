@@ -3,10 +3,9 @@ package ua.kpi.schedule.util;
 import org.jgap.Chromosome;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.beans.factory.annotation.Value;
 import ua.kpi.schedule.dto.DataBundle;
 //import ua.kpi.schedule.ga.*;
-import ua.kpi.schedule.ga.*;
+import ua.kpi.schedule.ga.genes.*;
 import ua.kpi.schedule.model.*;
 import ua.kpi.schedule.managers.DataManager;
 //import ua.kpi.schedule.ga.Start;
@@ -24,17 +23,12 @@ public class GeneticUtil {
     private final static Logger logger =  Logger.getLogger(GeneticUtil.class);
     @Autowired
     private DataManager dataManager;
-    @Autowired
-    private TimeSlotHandler timeSlotHandler;
 
     private Classroom [] classrooms;
     private Teacher[] teachers;
     private Subject[] subjects;
     private TimeSlot[] timeSlots;
     private Group[] groups;
-
-    private Integer max_idGroup = 2;
-    private Integer max_idTime = 2;
 
     public void setUpGenes(){
         DataBundle data = dataManager.getAllData();
@@ -43,8 +37,8 @@ public class GeneticUtil {
         ClassGene.setMax_idClass(classrooms.length);
         for (int i = 0; i < classrooms.length; i++){
             ClassGene.setInputClassSize(classrooms[i].getSize(), i);
-            logger.trace("Classroom number " + classrooms[i].getNumber() +
-                    "ClassRoomId = " + i + " size " + classrooms[i].getSize());
+//            logger.trace("Classroom number " + classrooms[i].getNumber() +
+//                    "ClassRoomId = " + i + " size " + classrooms[i].getSize());
         }
 
         //Get GroupGenes
@@ -52,8 +46,8 @@ public class GeneticUtil {
         GroupGene.setMax_idGroup(groups.length);
         for (int i = 0; i < groups.length; i++){
             GroupGene.setInputGroupSize(groups[i].getSize(), i);
-            logger.trace("Group number " + groups[i].getNameGroup() +
-                    "GroupId = " + i + " size " + groups.length);
+//            logger.trace("Group number " + groups[i].getNameGroup() +
+//                    "GroupId = " + i + " size " + groups.length);
         }
 
         //GetTimeGenes
@@ -68,8 +62,8 @@ public class GeneticUtil {
         subjects = data.getSubjects().toArray(new Subject[data.getSubjects().size()]);
         LessonGene.setMax_idLesson(subjects.length);
         for (int i = 0; i < subjects.length; i++){
-            logger.trace("Subject " + groups[i].getNameGroup() +
-                    "SubjectGeneId = " + i);
+//            logger.trace("Subject " + groups[i].getNameGroup() +
+//                    "SubjectGeneId = " + i);
         }
 
         // Get teacherGenes data
@@ -79,9 +73,9 @@ public class GeneticUtil {
             Teacher teacher = teachers[i];
             TeacherGene.setAll_avaliableLessons(getAvailableSubjectsForTeacher(teacher), i);
             TeacherGene.setAll_avaliableTimeSlots(getAvailableTimeSlotsForTeacher(teacher), i);
-            logger.trace("Teacher " + teacher.getNameUser() + " idTeacherGene " + i +
-                    " avaliableLessons=" + getAvailableSubjectsForTeacher(teacher)+
-                    " avaliableTimeSlots=" + getAvailableTimeSlotsForTeacher(teacher));
+//            logger.trace("Teacher " + teacher.getNameUser() + " idTeacherGene " + i +
+//                    " avaliableLessons=" + getAvailableSubjectsForTeacher(teacher)+
+//                    " avaliableTimeSlots=" + getAvailableTimeSlotsForTeacher(teacher));
         }
     }
 
@@ -121,6 +115,8 @@ public class GeneticUtil {
 
     public List <Lesson> extractLessonsDataFromChromosome(Chromosome bestChromosome){
         List <Lesson> timetable = new ArrayList<Lesson>();
+        Integer max_idGroup = 2;
+        Integer max_idTime = 2;
 
         // Extracting GroupClassTimeSupergene from a_bestChromosome
         GroupClassTeacherLessonTimeSG[] s =

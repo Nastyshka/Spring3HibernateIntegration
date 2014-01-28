@@ -17,7 +17,7 @@
 
 <div id="header">
     <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>КПИяшка</h1>
+    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>Інститут післядипломної освіти КПІ</h1>
     <hr>
 </div>
 
@@ -40,7 +40,7 @@
 </c:if>
 
 <form action="/timetable/profileSubject.do" method="get">
-    <input type="submit" value="Додати предмет"/>
+    <input type="submit" value="Додати"/>
 </form>
 
 <%--Group--%>
@@ -61,7 +61,7 @@
 </c:if>
 
 <form:form action="/timetable/profileGroup.do" method="get">
-    <input type="submit" value="Додати групу"/>
+    <input type="submit" value="Додати"/>
 </form:form>
 
 <%--Classroom--%>
@@ -82,7 +82,7 @@
 </c:if>
 
 <form:form action="/timetable/profileClassroom.do" method="GET">
-    <input type="submit" value="Додати аудитоію"/>
+    <input type="submit" value="Додати"/>
 </form:form>
 
 <%--Teacher--%>
@@ -102,7 +102,7 @@
     <c:out value="Немає даних про викладачів"/>
 </c:if>
 <form:form action="/timetable/profileTeacher.do" method="get">
-    <input type="submit" value="Додати викладача"/>
+    <input type="submit" value="Додати"/>
 </form:form>
 
 <%--Timeslot--%>

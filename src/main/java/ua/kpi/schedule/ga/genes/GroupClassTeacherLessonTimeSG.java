@@ -1,4 +1,4 @@
-package ua.kpi.schedule.ga;
+package ua.kpi.schedule.ga.genes;
 
 import org.jgap.Configuration;
 import org.jgap.Gene;

@@ -2,7 +2,7 @@ package ua.kpi.schedule.ga;
 
 import org.jgap.FitnessFunction;
 import org.jgap.IChromosome;
-import org.springframework.beans.factory.annotation.Autowired;
+import ua.kpi.schedule.ga.genes.GroupClassTeacherLessonTimeSG;
 import ua.kpi.schedule.util.Constants;
 
 

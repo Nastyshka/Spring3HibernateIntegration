@@ -5,12 +5,12 @@ import org.jgap.InvalidConfigurationException;
 import org.jgap.event.EventManager;
 import org.jgap.impl.BestChromosomesSelector;
 import org.jgap.impl.CrossoverOperator;
-import org.jgap.impl.DefaultConfiguration;
 import org.jgap.impl.StockRandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.xml.sax.SAXException;
+import ua.kpi.schedule.ga.genes.*;
 import ua.kpi.schedule.util.Constants;
 import ua.kpi.schedule.util.GeneticUtil;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -18,9 +18,9 @@ import java.util.Calendar;
 
 public class Start {
     protected static int MAX_EVOLUTIONS;
-    private static final String GENOTYPE_FILENAME = "K:\\population.xml";
-    private static final String BEST_CHROMOSOME_FILENAME = "K:\\best_chromosome.xml";
-    private static final String XML_TEST_FILENAME = "K:\\inputTimetable.xml";
+    private static final String GENOTYPE_FILENAME = "D:\\population.xml";
+    private static final String BEST_CHROMOSOME_FILENAME = "D:\\best_chromosome.xml";
+    private static final String XML_TEST_FILENAME = "D:\\inputTimetable.xml";
     private static long start_t = 0;
     private static long finish_t = 0;
     @Autowired
@@ -88,9 +88,9 @@ public class Start {
         conf.setKeepPopulationSizeConstant(false);
 
         //Creating genotype
-//        Population pop = new Population(conf, testChromosome);
-//        Genotype population = new Genotype(conf, pop);
-        Genotype population = Genotype.randomInitialGenotype(conf);
+        Population pop = new Population(conf, testChromosome);
+        Genotype population = new Genotype(conf, pop);
+//        Genotype population = Genotype.randomInitialGenotype(conf);
 
         System.out.println("Our Chromosome: \n " +
                            testChromosome.getConfiguration().toString());
@@ -138,6 +138,9 @@ public class Start {
         geneticUtil.extractLessonsDataFromChromosome(fittestChromosome);
 //        OutputData od = new OutputData();
 //        od.printToConsole(fittestChromosome);
+
+        OutputData od = new OutputData();
+        od.printToConsole(fittestChromosome);
 
         //Write population to the disk
 //        try {
