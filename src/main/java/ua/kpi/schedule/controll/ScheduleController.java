@@ -48,7 +48,7 @@ public class ScheduleController {
     public ModelAndView foundAllData() throws InvalidConfigurationException/* throws InvalidConfigurationException*/ {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
         modelAndView.addObject("foundData", dataProcessor.getAllData());
-        start.main();
+//        start.main();
         return modelAndView;
     }
 
@@ -169,10 +169,17 @@ public class ScheduleController {
     }
 
     @RequestMapping(value="/loginfailed.do", method = RequestMethod.GET)
-    public String loginerror(ModelMap model) {
+         public String loginerror(ModelMap model) {
 
         model.addAttribute("error", "true");
-        return "login";
+        return "login.do";
 
+    }
+
+    @RequestMapping(value="/generate.do", method = RequestMethod.GET)
+    public String generate(ModelMap model) throws InvalidConfigurationException {
+        start.main();
+//        model.addAttribute("error", "true");
+        return "list.do";
     }
 }

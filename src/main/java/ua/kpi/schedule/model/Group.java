@@ -2,6 +2,8 @@ package ua.kpi.schedule.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,13 +24,13 @@ public class Group implements Serializable {
 
     private String nameGroup;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")  @LazyCollection(LazyCollectionOption.FALSE)
     private List<Student> students;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "groups", fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "groups")    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Subject> subjects;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Lesson> lessons;
 
     private Integer size;

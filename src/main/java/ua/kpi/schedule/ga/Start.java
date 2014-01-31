@@ -8,6 +8,7 @@ import org.jgap.impl.CrossoverOperator;
 import org.jgap.impl.StockRandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.kpi.schedule.ga.genes.*;
+import ua.kpi.schedule.model.Lesson;
 import ua.kpi.schedule.util.Constants;
 import ua.kpi.schedule.util.GeneticUtil;
 import org.xml.sax.SAXException;
@@ -15,6 +16,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 public class Start {
     protected static int MAX_EVOLUTIONS;
@@ -26,7 +28,7 @@ public class Start {
     @Autowired
     GeneticUtil geneticUtil;
 
-    public void main() throws InvalidConfigurationException {
+    public List<Lesson> main() throws InvalidConfigurationException {
 
         // Reading data from xml
 //        try {
@@ -141,14 +143,7 @@ public class Start {
 
         OutputData od = new OutputData();
         od.printToConsole(fittestChromosome);
-
-        //Write population to the disk
-//        try {
-//          od.printToFile(population, GENOTYPE_FILENAME, BEST_CHROMOSOME_FILENAME);
-//        } catch (IOException e) {
-//            System.out.println("IOException raised! " + e.getMessage());
-//        }
-
+        return geneticUtil.extractLessonsDataFromChromosome(fittestChromosome);
     }
 
 }
