@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import ua.kpi.schedule.dto.DataBundle;
+import ua.kpi.schedule.dto.HomePageEntity;
 import ua.kpi.schedule.ga.Start;
 import ua.kpi.schedule.model.*;
 import ua.kpi.schedule.managers.DataManager;
@@ -35,9 +37,34 @@ public class ScheduleController {
      * @return ModelAndView
      */
     @RequestMapping("/home.do")
-    public ModelAndView home() {
-        return new ModelAndView("view/pages/index.jsp");
+    public String home(Map<String, Object> model, @RequestParam(value = "radio", required = false) String radio) {
+        DataBundle data = dataProcessor.getAllData();
+        if (radio != null && radio.equals("T")){
+            model.put("teachers", data.getTeachers());
+        } else {
+            model.put("groups", data.getGroups());
+        }
+        Teacher teacher = dataProcessor.findTeacher(2);
+        model.put("lessons", teacher.getLessons());
+        return "view/pages/index.jsp";
     }
+
+    @RequestMapping("/profileTeacher.do")
+    public String profileTeacher(Map<String, Object> model, @RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
+//        List<String> names = new ArrayList<String>();
+//        for (Subject subject : dataProcessor.getAllData().getSubjects()) {
+//            names.add(subject.getNameSubject());
+//        }
+        model.put("allTimeslots", dataProcessor.getAllData().getTimeSlots());
+        model.put("allSubjects", dataProcessor.getAllData().getSubjects());
+        if (idTeacher != null) {
+            model.put("teacher", dataProcessor.findTeacher(idTeacher));
+        } else {
+            model.put("teacher", new Teacher());
+        }
+        return "/view/pages/profileTeacher.jsp";
+    }
+
 
     /**
      * Controller method found all teachers
@@ -48,7 +75,6 @@ public class ScheduleController {
     public ModelAndView foundAllData() throws InvalidConfigurationException/* throws InvalidConfigurationException*/ {
         ModelAndView modelAndView = new ModelAndView("/view/pages/list.jsp");
         modelAndView.addObject("foundData", dataProcessor.getAllData());
-//        start.main();
         return modelAndView;
     }
 
@@ -73,21 +99,6 @@ public class ScheduleController {
         return "/view/pages/profileTimeslot.jsp";
     }
 
-    @RequestMapping("/profileTeacher.do")
-    public String profileTeacher(Map<String, Object> model, @RequestParam(value = "idTeacher", required = false) Integer idTeacher) {
-        List<String> names = new ArrayList<String>();
-        for (Subject subject : dataProcessor.getAllData().getSubjects()) {
-            names.add(subject.getNameSubject());
-        }
-        model.put("allTimeslots", dataProcessor.getAllData().getTimeSlots());
-        model.put("allSubjects", dataProcessor.getAllData().getSubjects());
-        if (idTeacher != null) {
-            model.put("teacher", dataProcessor.findTeacher(idTeacher));
-        } else {
-            model.put("teacher", new Teacher());
-        }
-        return "/view/pages/profileTeacher.jsp";
-    }
 
     @RequestMapping(value = "/profileClassroom.do", method = RequestMethod.GET)
     public String profileClassroom(Map<String, Object> model, @RequestParam(value = "selectedClassroom", required = false) Integer idClassroom) {
@@ -178,8 +189,11 @@ public class ScheduleController {
 
     @RequestMapping(value="/generate.do", method = RequestMethod.GET)
     public String generate(ModelMap model) throws InvalidConfigurationException {
-        start.main();
-//        model.addAttribute("error", "true");
-        return "list.do";
+        List<Lesson> lessons = start.main();
+        model.addAttribute("tt", lessons);
+        for (Lesson lesson : lessons){
+            dataProcessor.saveLesson(lesson);
+        }
+        return "redirect:/home.do";
     }
 }

@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Timetable</title>
@@ -19,12 +20,22 @@
     <style>
         <%@ include file="/view/css/tableStyle.css"%>
     </style>
+
+    <script type="text/javascript">
+        window.onload=function(){
+            var radios=document.getElementsByName("rad");
+            var form1=document.getElementById("form1");
+            for(i=0;i<radios.length;i++){
+                radios[i].onclick=function() { form1.submit(); };
+            }
+        };
+    </script>
 </head>
 <style>
 
 </style>
 <body>
-
+<form:form action="home.do" method="get" commandName="hp">
 <div id="header">
     <hr>
     <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>Інститут післядипломної освіти НТУУ КПІ</h1>
@@ -32,6 +43,7 @@
 </div>
 
 <div id="content">
+
 <span class="scroll"></span>
 
 <h1>Розклад</h1>
@@ -46,12 +58,26 @@
         <th scope="col" abbr="saturday">Четвер</th>
         <th scope="col" abbr="friday">П'ятниця</th>
     </tr>
+
     </thead>
 
-    <input type="radio" name="type" value="group" checked>
-        Група
-    <input type="radio" name="type" value="teacher">
-        Викладач
+    <c:if test="${empty hp.groups && empty hp.teachers}">
+        <%--<input type="radio" value="G"/>Група--%>
+        <%--<input type="radio" value="T"/>Викладач--%>
+        <input type="radio" name="type" value="G"/>
+            Група
+        <input type="radio" name="type" value="T"/>
+            Викладач
+    </c:if>
+
+    <c:if test="${not empty hp.groups}">
+        <form:label path="group">Групи</form:label>
+        <form:select path="group" type="text" items="${hp.groups}" itemLabel="nameGroup" itemValue="idStudentGroup" multiple="false"/>
+    </c:if>
+    <c:if test="${not empty teachers}">
+        <form:label path="teacher">Викладачі</form:label>
+        <form:select path="teacher" type="text" items="${hp.teachers}" itemLabel="nameUser" itemValue="idTeacher" multiple="false" title=""/>
+    </c:if>
 
     <tr>
         <th scope="row">1</th>
@@ -104,7 +130,7 @@
     </tr>
     </tbody>
 </table>
-
+</form:form>
 </div>
 
 </body>

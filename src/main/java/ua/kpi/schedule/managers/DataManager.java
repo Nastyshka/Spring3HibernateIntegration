@@ -36,6 +36,9 @@ public class DataManager {
     @Value("${daysOfWeek}")
     private List<String> daysOfWeek;
 
+    @Autowired
+    private LessonDAO lessonDAO;
+
     @Transactional
     public DataBundle getAllData(){
         DataBundle dataBundle = new DataBundle();
@@ -111,6 +114,9 @@ public class DataManager {
         teacherDAO.save(teacher);
     }
 
+    public void saveLesson(Lesson lesson) {
+        lessonDAO.save(lesson);
+    }
 
     public void saveSubject(Subject subject) {
         subjectDAO.save(subject);

@@ -160,8 +160,5 @@ public class GeneticUtil {
         }
         return timetable;
     }
-    public void setDataManager(DataManager dataManager) {
-        this.dataManager = dataManager;
 
-    }
 }
