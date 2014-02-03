@@ -16,7 +16,6 @@ import ua.kpi.schedule.ga.Start;
 import ua.kpi.schedule.model.*;
 import ua.kpi.schedule.managers.DataManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,13 +38,17 @@ public class ScheduleController {
     @RequestMapping("/home.do")
     public String home(Map<String, Object> model, @RequestParam(value = "radio", required = false) String radio) {
         DataBundle data = dataProcessor.getAllData();
-        if (radio != null && radio.equals("T")){
-            model.put("teachers", data.getTeachers());
-        } else {
-            model.put("groups", data.getGroups());
+        HomePageEntity hp = new HomePageEntity();
+
+        if (hp.getRadio() != null && hp.getRadio().equals("G")){
+            hp.setGroups(data.getGroups());
+        } else if (hp.getRadio() != null && hp.getRadio().equals("T")){
+            hp.setTeachers(data.getTeachers());
         }
+
         Teacher teacher = dataProcessor.findTeacher(2);
-        model.put("lessons", teacher.getLessons());
+        hp.setLessons(teacher.getLessons());
+        model.put("hp", hp);
         return "view/pages/index.jsp";
     }
 

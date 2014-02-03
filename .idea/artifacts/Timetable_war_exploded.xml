@@ -59,6 +59,10 @@
           <element id="library" level="project" name="Maven: junit-addons:junit-addons:1.4" />
           <element id="library" level="project" name="Maven: xerces:xercesImpl:2.6.2" />
           <element id="library" level="project" name="Maven: xerces:xmlParserAPIs:2.6.2" />
+          <element id="library" level="project" name="Maven: org.ajaxtags:ajaxtags:1.1.5" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.7.0" />
+          <element id="library" level="project" name="Maven: net.htmlparser:jericho-html:1.5-dev1" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:2.0.3-1" />
         </element>
       </element>
     </root>

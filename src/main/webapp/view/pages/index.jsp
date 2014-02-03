@@ -10,63 +10,53 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
+    <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+        $("input[id=radio]:radio").change(function () {
+            alert("LOL!");
+        });
+    </script>
     <title>Timetable</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="description" content="Pimp your tables with CSS3" />
-    <meta name="keywords" content="table, css3, style, beautiful, fancy, css"/>
-    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
-    <style>
-        <%@ include file="/view/css/tableStyle.css"%>
-    </style>
+     <style>
+         <%@ include file="/view/css/tableStyle.css"%>
+     </style>
 
-    <script type="text/javascript">
-        window.onload=function(){
-            var radios=document.getElementsByName("rad");
-            var form1=document.getElementById("form1");
-            for(i=0;i<radios.length;i++){
-                radios[i].onclick=function() { form1.submit(); };
-            }
-        };
-    </script>
-</head>
-<style>
+ </head>
 
-</style>
-<body>
-<form:form action="home.do" method="get" commandName="hp">
-<div id="header">
-    <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>Інститут післядипломної освіти НТУУ КПІ</h1>
-    <hr>
-</div>
+ <body>
+ <form:form action="home.do" method="post" commandName="hp" name="hpForm" id="hpForm">
+ <div id="header">
+     <hr>
+     <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>Інститут післядипломної освіти НТУУ КПІ</h1>
+     <hr>
+ </div>
 
-<div id="content">
+ <div id="content">
 
-<span class="scroll"></span>
+ <span class="scroll"></span>
 
-<h1>Розклад</h1>
+ <h1>Розклад</h1>
 
-<table class="table1">
-    <thead>
-    <tr>
-        <th></th>
-        <th scope="col" abbr="monday">Понеділок</th>
-        <th scope="col" abbr="tuesday">Вівторок</th>
-        <th scope="col" abbr="wednesday">Середа</th>
-        <th scope="col" abbr="saturday">Четвер</th>
-        <th scope="col" abbr="friday">П'ятниця</th>
-    </tr>
+ <table class="table1">
+     <thead>
+     <tr>
+         <th></th>
+         <th scope="col" abbr="monday">Понеділок</th>
+         <th scope="col" abbr="tuesday">Вівторок</th>
+         <th scope="col" abbr="wednesday">Середа</th>
+         <th scope="col" abbr="saturday">Четвер</th>
+         <th scope="col" abbr="friday">П'ятниця</th>
+     </tr>
 
-    </thead>
+     </thead>
 
-    <c:if test="${empty hp.groups && empty hp.teachers}">
-        <%--<input type="radio" value="G"/>Група--%>
-        <%--<input type="radio" value="T"/>Викладач--%>
-        <input type="radio" name="type" value="G"/>
+     <c:if test="${empty hp.groups && empty hp.teachers}">
+         <input type="radio" name="type" value="G" id="radio"/>
             Група
-        <input type="radio" name="type" value="T"/>
+        <input type="radio" name="type" value="T" id="radio"/>
             Викладач
     </c:if>
 
