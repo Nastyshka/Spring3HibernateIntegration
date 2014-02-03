@@ -36,20 +36,34 @@ public class ScheduleController {
      * @return ModelAndView
      */
     @RequestMapping("/home.do")
-    public String home(Map<String, Object> model, @RequestParam(value = "radio", required = false) String radio) {
+    public String home(Map<String, Object> model, @RequestParam(value = "group", required = false) Integer idGroup) {
         DataBundle data = dataProcessor.getAllData();
         HomePageEntity hp = new HomePageEntity();
 
-        if (hp.getRadio() != null && hp.getRadio().equals("G")){
-            hp.setGroups(data.getGroups());
-        } else if (hp.getRadio() != null && hp.getRadio().equals("T")){
-            hp.setTeachers(data.getTeachers());
-        }
+        hp.setGroups(data.getGroups());
 
-        Teacher teacher = dataProcessor.findTeacher(2);
-        hp.setLessons(teacher.getLessons());
+        if(idGroup != null){
+            Group group = dataProcessor.findGroup(idGroup);
+            hp.setGroup(group);
+            hp.setLessons(group.getLessons());
+        }
         model.put("hp", hp);
         return "view/pages/index.jsp";
+    }
+
+    @RequestMapping("/home2.do")
+    public String home2(Map<String, Object> model, @RequestParam(value = "teacher", required = false) Integer idTeacher) {
+        DataBundle data = dataProcessor.getAllData();
+        HomePageEntity hp = new HomePageEntity();
+
+        hp.setTeachers(data.getTeachers());
+        if (idTeacher != null){
+            Teacher teacher = dataProcessor.findTeacher(idTeacher);
+            hp.setTeacher(teacher);
+            hp.setLessons(teacher.getLessons());
+        }
+        model.put("hp", hp);
+        return "view/pages/index2.jsp";
     }
 
     @RequestMapping("/profileTeacher.do")

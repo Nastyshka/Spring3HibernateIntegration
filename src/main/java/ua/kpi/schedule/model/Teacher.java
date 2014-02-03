@@ -33,7 +33,7 @@ public class Teacher extends User {
                     {@JoinColumn(name = "SUBJECT_ID")})
     private List<Subject> subjects;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher") @LazyCollection(LazyCollectionOption.FALSE)
     private List<Lesson> lessons;
 
     @ManyToMany(cascade = CascadeType.ALL)  @LazyCollection(LazyCollectionOption.FALSE)

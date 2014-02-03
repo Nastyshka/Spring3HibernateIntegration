@@ -13,11 +13,6 @@
 
 <html>
 <head>
-    <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
-        $("input[id=radio]:radio").change(function () {
-            alert("LOL!");
-        });
-    </script>
     <title>Timetable</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
@@ -27,7 +22,7 @@
 </head>
 
 <body>
-<form:form action="home.do" method="post" commandName="hp" name="hpForm" id="hpForm">
+<form:form action="home2.do" method="get" commandName="hp" name="hpForm" id="hpForm">
 <div id="header">
     <hr>
     <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>Інститут післядипломної освіти НТУУ КПІ</h1>
@@ -38,8 +33,28 @@
 
     <span class="scroll"></span>
 
-    <h1>Розклад</h1>
 
+
+    <c:if test="${empty hp.teacher}">
+        <h1>Розклад викладачів </h1>
+    </c:if>
+
+    <c:if test="${not empty hp.teacher}">
+        <h1>Розклад викладача ${hp.teacher.nameUser}</h1>
+    </c:if>
+
+    <c:url value="/home.do" var="profileUrl">
+        <%--<c:param name="idTeacher" value="${teacher.idTeacher}"/>--%>
+    </c:url>
+    <a name="tt" href="${profileUrl}"/><c:out value="Розклад груп студентів"/></a> </br>
+
+
+    <c:if test="${not empty hp.teachers}">
+        <form:label path="teacher">Викладачі</form:label>
+        <form:select path="teacher" type="text" items="${hp.teachers}" itemLabel="nameUser" itemValue="idTeacher" multiple="false" title=""/>
+    </c:if>
+
+    <input type="submit" value="Знайти">
     <table class="table1">
         <thead>
         <tr>
@@ -52,22 +67,6 @@
         </tr>
 
         </thead>
-
-        <c:if test="${empty hp.groups && empty hp.teachers}">
-            <input type="radio" name="type" value="G" id="radio"/>
-            Група
-            <input type="radio" name="type" value="T" id="radio"/>
-            Викладач
-        </c:if>
-
-        <c:if test="${not empty hp.groups}">
-            <form:label path="group">Групи</form:label>
-            <form:select path="group" type="text" items="${hp.groups}" itemLabel="nameGroup" itemValue="idStudentGroup" multiple="false"/>
-        </c:if>
-        <c:if test="${not empty teachers}">
-            <form:label path="teacher">Викладачі</form:label>
-            <form:select path="teacher" type="text" items="${hp.teachers}" itemLabel="nameUser" itemValue="idTeacher" multiple="false" title=""/>
-        </c:if>
 
         <tr>
             <th scope="row">1</th>

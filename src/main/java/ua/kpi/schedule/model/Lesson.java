@@ -22,25 +22,25 @@ public class Lesson implements Serializable {
     @Column(name="LESSON_ID")
     private int idLesson;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "STUDENT_GROUP_ID")
     private Group group;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TEACHER_ID")
     private Teacher teacher;
 
     private String lessonType;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "SUBJECT_ID")
     private Subject subject;
 
-    @OneToOne(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "CLASSROOM_ID")
     private Classroom classroom;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TIMESLOT_ID")
     private TimeSlot timeSlot;
 
