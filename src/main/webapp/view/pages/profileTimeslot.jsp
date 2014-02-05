@@ -9,32 +9,34 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="description" content="Pimp your tables with CSS3"/>
     <meta name="keywords" content="table, css3, style, beautiful, fancy, css"/>
-    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen"/>
     <style>
         <%@ include file="/view/css/tableStyle.css"%>
+        <%@include file="/view/css/index.css" %>
     </style>
 </head>
-<style>
 
-</style>
-<body>
-<div id="header">
-    <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg"
-                                                             height="57" width="57"/></a>КПИяшка</h1>
-    <hr>
-</div>
-<div id="content">
-    <a class="back" href=""></a>
-    <span class="scroll"></span>
+<body style="background-image: url(${pageContext.request.contextPath}/view/img/back1.jpg);
+        background-attachment: scroll;
+        background-position: center;">
+<div class="wrapper">
+    <div class="header">
+        <a class="header_link" href="/home.do">
+            <img src="${pageContext.request.contextPath}/view/img/logo.png" class="header_logo" hight="57" width="48">
+            <span class="header_title">Інститут післядипломної освіти НТУУ КПІ</span>
+        </a>
+    </div>
+    <div id="content">
+        <a class="back" href=""></a>
+        <span class="scroll"></span>
 
-</div>
-<form:form method="post" action="/timetable/addTimeslot.do" commandName="timeslot">
+    </div>
+    <form:form method="post" action="/timetable/addTimeslot.do" commandName="timeslot">
     <form:hidden path="idTimeSlot"/>
     <table>
         <tr>
             <td><form:label path="lessonNumber">Номер пари</form:label></td>
-            <td><form:input path="lessonNumber" name="command.lessonNumber" type="text" value="${command.lessonNumber}"/></td>
+            <td><form:input path="lessonNumber" name="command.lessonNumber" type="text"
+                            value="${command.lessonNumber}"/></td>
         </tr>
 
         <tr>
@@ -58,6 +60,10 @@
             </td>
         </tr>
     </table>
+</div>
+<div class="footer">
+    Anastasiia Rudyk
+</div>
 </form:form>
 </body>
 </html>

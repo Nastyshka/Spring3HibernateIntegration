@@ -24,13 +24,13 @@ public class Group implements Serializable {
 
     private String nameGroup;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")  @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group") @LazyCollection(LazyCollectionOption.FALSE)
     private List<Student> students;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "groups")    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "groups") @LazyCollection(LazyCollectionOption.FALSE)
     private List<Subject> subjects;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group") @LazyCollection(LazyCollectionOption.FALSE)
     private List<Lesson> lessons;
 
     private Integer size;

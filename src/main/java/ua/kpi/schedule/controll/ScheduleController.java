@@ -208,9 +208,9 @@ public class ScheduleController {
     public String generate(ModelMap model) throws InvalidConfigurationException {
         List<Lesson> lessons = start.main();
         model.addAttribute("tt", lessons);
-        for (Lesson lesson : lessons){
-            dataProcessor.saveLesson(lesson);
-        }
+//        for (Lesson lesson : lessons){
+//            dataProcessor.saveLesson(lesson);
+//        }
         return "redirect:/home.do";
     }
 }

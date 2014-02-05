@@ -1,0 +1,26 @@
+.form{
+	border: 3px solid #B0E5BB;
+	padding: 5px;
+	width: 415px;
+	margin: 40px 0 0 70px;
+}
+.form_name{
+	font-family:sans-serif;
+	font-weight: bold;
+	margin-top: 25px;
+	text-align: center;
+	font-size: 25px;
+}
+.form_style{
+	background-color: #B0E5BB;
+	width: 400px;
+	height: 300px;
+	padding: 5px;
+}
+.form_table{
+	padding: 25px 0 0 25px;
+}
+input{
+	margin: 5px 0 5px 0;
+	height: 25px;
+}

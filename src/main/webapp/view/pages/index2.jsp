@@ -17,23 +17,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
         <%@ include file="/view/css/tableStyle.css"%>
+        <%@include file="/view/css/index.css" %>
     </style>
 
 </head>
 
-<body>
-<form:form action="home2.do" method="get" commandName="hp" name="hpForm" id="hpForm">
-<div id="header">
-    <hr>
-    <h1><a href="/timetable/home.do" title="Start page"><img src="${pageContext.request.contextPath}/view/img/logo.jpg" height="57" width="57"/></a>Інститут післядипломної освіти НТУУ КПІ</h1>
-    <hr>
+<body style="background-image: url(${pageContext.request.contextPath}/view/img/back1.jpg);
+background-attachment: scroll;
+background-position: center;">
+
+<div class="wrapper">
+<div class="header">
+    <a class="header_link" href="#">
+        <img src="${pageContext.request.contextPath}/view/img/logo.png" class="header_logo" hight="57" width="48">
+        <span class="header_title">Інститут післядипломної освіти НТУУ КПІ</span>
+    </a>
 </div>
 
+<form:form action="home2.do" method="get" commandName="hp" name="hpForm" id="hpForm">
 <div id="content">
 
     <span class="scroll"></span>
-
-
 
     <c:if test="${empty hp.teacher}">
         <h1>Розклад викладачів </h1>
@@ -44,9 +48,8 @@
     </c:if>
 
     <c:url value="/home.do" var="profileUrl">
-        <%--<c:param name="idTeacher" value="${teacher.idTeacher}"/>--%>
     </c:url>
-    <a name="tt" href="${profileUrl}"/><c:out value="Розклад груп студентів"/></a> </br>
+    <a name="tt" href="${profileUrl}"/><h3><c:out value="Розклад груп студентів"/></h3></a> </br>
 
 
     <c:if test="${not empty hp.teachers}">
@@ -56,71 +59,292 @@
 
     <input type="submit" value="Знайти">
     <table class="table1">
-        <thead>
-        <tr>
-            <th></th>
-            <th scope="col" abbr="monday">Понеділок</th>
-            <th scope="col" abbr="tuesday">Вівторок</th>
-            <th scope="col" abbr="wednesday">Середа</th>
-            <th scope="col" abbr="saturday">Четвер</th>
-            <th scope="col" abbr="friday">П'ятниця</th>
-        </tr>
+    <thead>
+    <tr>
+        <th></th>
+        <th scope="col" abbr="monday">Понеділок</th>
+        <th scope="col" abbr="tuesday">Вівторок</th>
+        <th scope="col" abbr="wednesday">Середа</th>
+        <th scope="col" abbr="saturday">Четвер</th>
+        <th scope="col" abbr="friday">П'ятниця</th>
+    </tr>
 
-        </thead>
+    </thead>
 
-        <tr>
-            <th scope="row">1</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tbody>
-        <tr>
-            <th scope="row">2</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">6</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        </tbody>
+
+    <tr>
+        <th scope="row">1 пара<br/> 8.30-10.05</th>
+        <td>
+            <c:if test="${not empty hp.lessons}">
+                <c:forEach items="${hp.lessons}" var="lesson">
+                    <c:if test="${lesson.timeSlot.idTimeSlot eq 1}">
+                        ${lesson.subject.nameSubject}
+                    </c:if>
+                </c:forEach>
+            </c:if>
+        </td>
+        <td>
+            <c:if test="${not empty hp.lessons}">
+                <c:forEach items="${hp.lessons}" var="lesson">
+                    <c:if test="${lesson.timeSlot.idTimeSlot eq 2}">
+                        ${lesson.subject.nameSubject}  <br/>
+                        ${lesson.classroom.number}
+                    </c:if>
+                </c:forEach>
+            </c:if>
+        </td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 3}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if>
+        </td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 4}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if>
+        </td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 5}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if>
+        </td>
+    </tr>
+    <tbody>
+    <tr>
+        <th scope="row">2 пара<br/> 10.25-12.00</th>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 6}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 7}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 8}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 9}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 10}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+    </tr>
+    <tr>
+        <th scope="row">3 пара<br/> 12.20-13.55</th>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 11}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 12}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 13}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 14}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 15}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+    </tr>
+    <tr>
+        <th scope="row">4 пара<br/> 14.15-15.50</th>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 16}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 17}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 18}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 19}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 20}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+    </tr>
+    <tr>
+        <th scope="row">5 пара<br/> 16.10-17.45</th>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 21}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 22}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 23}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 24}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 25}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+    </tr>
+    <tr>
+        <th scope="row">6 пара<br/> 18.05-19.40</th>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 26}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 27}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 28}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 29}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+        <td><c:if test="${not empty hp.lessons}">
+            <c:forEach items="${hp.lessons}" var="lesson">
+                <c:if test="${lesson.timeSlot.idTimeSlot eq 30}">
+                    ${lesson.subject.nameSubject}  <br/>
+                    ${lesson.classroom.number}
+                </c:if>
+            </c:forEach>
+        </c:if></td>
+    </tr>
+    <tr>
+    </tbody>
     </table>
     </form:form>
 </div>
-
+</div>
+<div class="footer">
+    Anastasiia Rudyk
+</div>
 </body>
 </html>

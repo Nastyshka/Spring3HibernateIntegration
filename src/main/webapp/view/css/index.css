@@ -1,0 +1,95 @@
+* {
+    font-family: "Times New Roman", Times, serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+}
+
+
+/* Stiky footer */
+html, body {
+    min-height: 100% !important;
+    min-height: auto;
+    height: 100%;
+    min-width: 1175px;
+    /*background: url('../img/back1.jpg') scroll center;*/
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height:100%;
+    width: 100%;
+    /*background-image: url(../img/back1.jpg);*/
+    /*background-attachment: scroll;*/
+    /*background-position: center;*/
+    /*background-position:right top;*/
+    /*background: url('../img/back1.jpg') scroll center;*/
+}
+
+/*.bodyBack {*/
+    /*background-image: url(../img/back1.jpg);*/
+    /*background-attachment: scroll;*/
+    /*background-position: center;*/
+ /*}*/
+
+.container{
+
+
+}
+.footer{
+	margin-top: -50px;
+	height: 50px;
+	width: 100%;
+	border-top: dotted 2px #35A57C;
+	padding-top: 10px;
+}
+/* Stiky footer */
+
+
+/*  Header  */
+.header{
+	width: 100%;
+	height: 100px;
+	border-bottom: dotted 2px #35A57C;
+	vertical-align: middle;
+/*	background: #dfe3d4  url(../img/header_img.jpg) no-repeat;
+	background-position: right;*/
+ }
+.header_link{
+	margin-left: 30px;
+	text-decoration: none;
+}
+.header_title{
+	font: 45px italic;
+	color: #056300;
+	margin-left: 10px;		
+}
+.header_logo{
+	margin-top: 10px;
+}
+
+.form_button{
+    margin-left: 15px;
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 20px;
+    border: 1px solid #25632A;
+    border-radius: 5px;
+
+    background: #49cc54; /* Old browsers */
+    background: -moz-linear-gradient(top,  #49cc54 0%, #49cc54 0%, #3a9642 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#49cc54), color-stop(0%,#49cc54), color-stop(99%,#3a9642)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #49cc54 0%,#49cc54 0%,#3a9642 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #49cc54 0%,#49cc54 0%,#3a9642 99%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #49cc54 0%,#49cc54 0%,#3a9642 99%); /* IE10+ */
+    background: linear-gradient(to bottom,  #49cc54 0%,#49cc54 0%,#3a9642 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49cc54', endColorstr='#3a9642',GradientType=0 ); /* IE6-9 */
+}
+
+/*  Footer  */
+
+/*  Footer  */

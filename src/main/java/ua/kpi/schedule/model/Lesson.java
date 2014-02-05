@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,7 +24,7 @@ public class Lesson implements Serializable {
     @Column(name="LESSON_ID")
     private int idLesson;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)   @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "STUDENT_GROUP_ID")
     private Group group;
 
@@ -36,7 +38,7 @@ public class Lesson implements Serializable {
     @JoinColumn(name = "SUBJECT_ID")
     private Subject subject;
 
-    @OneToOne(fetch= FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CLASSROOM_ID")
     private Classroom classroom;
 
