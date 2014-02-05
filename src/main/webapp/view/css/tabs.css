@@ -1,5 +1,5 @@
 .w3c {
-    min-height: 450px;
+    min-height: 400px;
     position: relative;
     width: 100%;
 }
@@ -15,9 +15,25 @@
                 padding: 5px 10px;
                 border: 1px solid #ccc;
                 border-bottom: 1px solid white; }
-.w3c > div:not(:target) > a { border-bottom: 0; background: -moz-linear-gradient(top, #ffffff, #eee); }
-.w3c > div:target > a { background: #ffffff; }
+.w3c > div:not(:target) > a { border-bottom: 0;}
+.w3c > div:target > a { background: #B0E5BB; }
 
-.w3c > div > div { background: #ffffff; z-index: 1; left: 0; top: 30px; bottom: 0; right: 0; padding: 20px; border: 1px solid #ccc; overflow:auto;}
+.w3c > div > div { background: #B0E5BB; z-index: 1; left: 0; top: 30px; bottom: 0; right: 0; padding: 20px; border: 1px solid #ccc; overflow:auto;}
 .w3c > div:not(:target) > div { position: absolute }
 .w3c > div:target > div { position: absolute; z-index: 2; }
+
+.tabs{
+    margin: 20px 0 10px 30px;
+}
+.button{
+    margin-left: 15px;
+}
+.tab_cont{
+    margin: 5px 0 0 15px;
+}
+.tab_style, .tab_cont{
+    font-family: Tahoma italic;
+    font-size: 13pt;
+    text-decoration: none;
+    color: #000;
+}

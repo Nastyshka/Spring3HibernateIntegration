@@ -31,7 +31,7 @@
     <a class="back" href=""></a>
     <span class="scroll"></span>
 
-    <h1>Додати новий предмет</h1>
+    <div class="main_title">Предмет</div>
 
 </div>
 <form:form method="post" action="/timetable/addSubject.do" commandName="subject">
@@ -66,9 +66,7 @@
 
 </form:form>
     </div>
-<div class="footer">
-    Anastasiia Rudyk
-</div>
+
 </body>
 </html>
 

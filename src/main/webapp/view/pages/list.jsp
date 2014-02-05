@@ -28,10 +28,10 @@
     </div>
 
     <%--Subject--%>
-    <div style="width: 90%; float: left;">
+    <div style="width: 700px;" class="tabs">
         <div class="w3c">
             <div id="tab1">
-                <a href="#tab1">Список предметів</a>
+                <a class="tab_style" href="#tab1">Список предметів</a>
 
                 <div>
                     <c:if test="${not empty foundData.subjects}">
@@ -40,7 +40,7 @@
                             <c:url value="/profileSubject.do" var="profileUrl">
                                 <c:param name="selectedSubject" value="${subject.idSubject}"/>
                             </c:url>
-                            <a name="selected" href="${profileUrl}"/><c:out value="${subject.nameSubject}"/></a> </br>
+                            <a  class="tab_cont" name="selected" href="${profileUrl}"/><c:out value="${subject.nameSubject}"/></a> </br>
                         </c:forEach>
                     </form>
                     </c:if>
@@ -57,7 +57,7 @@
 
             <%--Group--%>
             <div id="tab2">
-                <a href="#tab2">Список груп</a>
+                <a class="tab_style" href="#tab2">Список груп</a>
 
                 <div>
                     <c:if test="${not empty foundData.groups}">
@@ -66,7 +66,7 @@
                             <c:url value="/profileGroup.do" var="profileUrl">
                                 <c:param name="selectedGroup" value="${group.idStudentGroup}"/>
                             </c:url>
-                            <a name="selected" href="${profileUrl}"/><c:out value="${group.nameGroup}"/></a> </br>
+                            <a class="tab_cont" name="selected" href="${profileUrl}"/><c:out value="${group.nameGroup}"/></a> </br>
                         </c:forEach>
                     </form>
                     </c:if>
@@ -84,7 +84,7 @@
             <%--Classroom--%>
             <div id="tab3">
 
-                <a href="#tab3">Список аудиторій</a>
+                <a class="tab_style" href="#tab3">Список аудиторій</a>
 
                 <div>
                     <c:if test="${not empty foundData.classrooms}">
@@ -93,7 +93,7 @@
                             <c:url value="/profileClassroom.do" var="profileUrl">
                                 <c:param name="selectedClassroom" value="${classroom.idClassroom}"/>
                             </c:url>
-                            <a name="selected" href="${profileUrl}"/><c:out value="${classroom.number}"/></a> </br>
+                            <a class="tab_cont" name="selected" href="${profileUrl}"/><c:out value="${classroom.number}"/></a> </br>
                         </c:forEach>
                     <%--</form>--%>
                     </c:if>
@@ -111,7 +111,7 @@
             <%--Teacher--%>
             <div id="tab4">
 
-                <a href="#tab4">Список вчителів</a>
+                <a class="tab_style" href="#tab4">Список вчителів</a>
 
                 <div>
                     <c:if test="${not empty foundData.teachers}">
@@ -120,7 +120,7 @@
                             <c:url value="/profileTeacher.do" var="profileUrl">
                                 <c:param name="idTeacher" value="${teacher.idTeacher}"/>
                             </c:url>
-                            <a name="selected" href="${profileUrl}"/><c:out value="${teacher.nameUser}"/></a> </br>
+                            <a class="tab_cont" name="selected" href="${profileUrl}"/><c:out value="${teacher.nameUser}"/></a> </br>
                         </c:forEach>
                     </form>
                     </c:if>
@@ -137,7 +137,7 @@
             <%--Timeslot--%>
             <div id="tab5">
 
-                <a href="#tab5">Заняття</a>
+                <a class="tab_style" href="#tab5">Заняття</a>
 
                 <div>
                     <c:if test="${not empty foundData.timeSlots}">
@@ -146,7 +146,7 @@
                             <c:url value="/profileTimeslot.do" var="profileUrl">
                                 <c:param name="selectedTimeslot" value="${timeslot.idTimeSlot}"/>
                             </c:url>
-                            <a name="selected"
+                            <a class="tab_cont" name="selected"
                                href="${profileUrl}"/>${timeslot.dayOfWeek}-${timeslot.lessonNumber}</a> </br>
                         </c:forEach>
                     </form>
@@ -163,15 +163,12 @@
         </div>
     </div>
 
-    <div>
+    <div class="button">
         <form:form action="/timetable/generate.do" method="get">
-            <br/>
             <input type="submit" value="Розклад" class="form_button"/>
         </form:form>
     </div>
 </div>
-<div class="footer">
-    Anastasiia Rudyk
-</div>
+
 </body>
 </html>

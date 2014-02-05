@@ -40,24 +40,26 @@ background-position: center;">
     <span class="scroll"></span>
 
     <c:if test="${empty hp.teacher}">
-        <h1>Розклад викладачів </h1>
+    <div class="main_title">Розклад викладачів </div>
     </c:if>
 
     <c:if test="${not empty hp.teacher}">
-        <h1>Розклад викладача ${hp.teacher.nameUser}</h1>
+    <div class="main_title">Розклад викладача ${hp.teacher.nameUser}</div>
     </c:if>
 
     <c:url value="/home.do" var="profileUrl">
     </c:url>
-    <a name="tt" href="${profileUrl}"/><h3><c:out value="Розклад груп студентів"/></h3></a> </br>
+    <a name="tt" href="${profileUrl}"/><div class="title2"><c:out  value="Розклад груп студентів"/></div></a>
 
-
+    <div class="fstyle">
     <c:if test="${not empty hp.teachers}">
         <form:label path="teacher">Викладачі</form:label>
-        <form:select path="teacher" type="text" items="${hp.teachers}" itemLabel="nameUser" itemValue="idTeacher" multiple="false" title=""/>
+        <form:select path="teacher" type="text" items="${hp.teachers}" itemLabel="nameUser" itemValue="idTeacher" multiple="false"
+                     cssClass="form_select" title=""/>
     </c:if>
-
     <input type="submit" value="Знайти" class="form_button">
+    </div>
+
     <table class="table1">
     <thead>
     <tr>
@@ -343,8 +345,6 @@ background-position: center;">
     </form:form>
 </div>
 </div>
-<div class="footer">
-    Anastasiia Rudyk
-</div>
+
 </body>
 </html>

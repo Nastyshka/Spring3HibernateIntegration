@@ -32,34 +32,34 @@
     <a class="back" href=""></a>
     <span class="scroll"></span>
 
-    <h1>Профайл викладача</h1>
+    <div class="main_title">Профайл викладача</div>
 </div>
 
-<form:form method="post" action="/timetable/addTeacher.do" commandName="teacher">
+<form:form method="post" action="/timetable/addTeacher.do" commandName="teacher" cssClass="fstyle">
     <form:hidden path="idTeacher"/>
     <table>
-        <tr>
+        <tr class="title2">
             <td><form:label path="nameUser">ПІБ</form:label></td>
             <td><form:input path="nameUser" name="command.nameUser" type="text" value="${command.nameUser}"/></td>
         </tr>
-        <tr>
+        <tr class="title2">
             <td><form:label path="eMail">e-mail</form:label></td>
             <td><form:input path="eMail" name="command.eMail" type="text" value="${command.eMail}"/></td>
 
         </tr>
-        <tr>
+        <tr class="title2">
             <td><form:label path="telephoneNumber">Номер телефону</form:label></td>
             <td><form:input path="telephoneNumber" name="command.telephoneNumber" type="text"
                             value="${command.telephoneNumber}"/></td>
         </tr>
-        <tr>
+        <tr class="title2">
             <td><form:label path="subjects">Предмети</form:label></td>
-            <td><form:select path="subjects" type="text" items="${allSubjects}" itemLabel="nameSubject" itemValue="idSubject" multiple="true"/></td>
+            <td><form:select path="subjects" type="text" items="${allSubjects}" itemLabel="nameSubject" itemValue="idSubject" multiple="true" cssClass="form_selectMult"/></td>
         </tr>
 
-        <tr>
+        <tr class="title2">
             <td><form:label path="availableTimeslots">Вільні пари</form:label></td>
-            <td><form:select path="availableTimeslots" type="text" items="${allTimeslots}" itemLabel="getDayLesson" itemValue="idTimeSlot" multiple="true">
+            <td><form:select path="availableTimeslots" type="text" items="${allTimeslots}" itemLabel="getDayLesson" cssClass="form_select" itemValue="idTimeSlot" multiple="false">
 
                 </form:select>
             </td>
@@ -68,9 +68,6 @@
     <input type="submit" value="Зберегти" class="form_button"/>
 </form:form>
     </div>
-<div class="footer">
-    Anastasiia Rudyk
-</div>
 </body>
 </html>
 

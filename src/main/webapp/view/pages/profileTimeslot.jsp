@@ -32,6 +32,8 @@
     </div>
     <form:form method="post" action="/timetable/addTimeslot.do" commandName="timeslot">
     <form:hidden path="idTimeSlot"/>
+
+    <div class="main_title">Розклад заняття</div>
     <table>
         <tr>
             <td><form:label path="lessonNumber">Номер пари</form:label></td>
@@ -41,7 +43,7 @@
 
         <tr>
             <td><form:label path="dayOfWeek">День тижня</form:label></td>
-            <td><form:select path="dayOfWeek" type="text" items="${daysOfWeek}" multiple="false"/></td>
+            <td><form:select path="dayOfWeek" type="text" items="${daysOfWeek}" multiple="false" cssClass="form_select"/></td>
         </tr>
 
         <tr>
@@ -61,9 +63,7 @@
         </tr>
     </table>
 </div>
-<div class="footer">
-    Anastasiia Rudyk
-</div>
+
 </form:form>
 </body>
 </html>

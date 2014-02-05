@@ -30,7 +30,7 @@
     <a class="back" href=""></a>
     <span class="scroll"></span>
 
-    <h1>Аудиторія</h1>
+    <div class="main_title">Аудиторія</div>
 
 </div>
 <form:form method="post" action="/timetable/addClassroom.do" commandName="classroom">
@@ -57,9 +57,7 @@
 
 </form:form>
     </div>
-<div class="footer">
-    Anastasiia Rudyk
-</div>
+
 </body>
 </html>
 

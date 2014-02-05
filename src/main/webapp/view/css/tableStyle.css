@@ -5,6 +5,7 @@ table.table1{
     line-height: 1.4em;
     font-style: normal;
     border-collapse:separate;
+    margin: 5px 0 0 20px;
 }
 .table1 thead th{
     padding:15px;

@@ -35,26 +35,27 @@ background-position: center;">
 <form:form action="home.do" method="get" commandName="hp" name="hpForm" id="hpForm">
 
 <c:if test="${empty hp.group}">
-    <h1>Розклад груп </h1>
+    <div class="main_title">Розклад груп </div>
 </c:if>
 
 <c:if test="${not empty hp.group}">
-    <h1>Розклад гпупи ${hp.group.nameGroup}</h1>
+    <div class="main_title">Розклад гпупи ${hp.group.nameGroup}</div>
 </c:if>
 
 <c:url value="/home2.do" var="profileUrl">
 </c:url>
 <a name="tt" href="${profileUrl}"/>
 
-<h3><c:out value="Розклад викладачів"/></h3></a> </br>
+<div class="title2"><c:out value="Розклад викладачів"/></div></a>
 
-
+<div class="fstyle">
 <c:if test="${not empty hp.groups}">
     <form:label path="group">Групи</form:label>
     <form:select path="group" type="text" items="${hp.groups}" itemLabel="nameGroup" itemValue="idStudentGroup"
-                 multiple="false" title="" cssClass="form_button"/>
+                 multiple="false" title="" cssClass="form_select"/>
 </c:if>
 <input type="submit" value="Знайти" name="submit" class="form_button">
+</div>
 
 <table class="table1">
 <thead>
@@ -340,8 +341,5 @@ background-position: center;">
 </form:form>
 </div>
 
-<div class="footer">
-    Anastasiia Rudyk
-</div>
 </body>
 </html>

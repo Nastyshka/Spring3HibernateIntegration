@@ -30,6 +30,7 @@
         <span class="scroll"></span>
 
     </div>
+    <div class="main_title">Група студентів</div>
     <form:form method="post" action="/timetable/addGroup.do" commandName="group">
         <form:hidden path="idStudentGroup"/>
         <table>
@@ -42,7 +43,7 @@
             <tr>
                 <td><form:label path="subjects">Предмети</form:label></td>
                 <td><form:select path="subjects" type="text" items="${allSubjects}" itemLabel="nameSubject"
-                                 itemValue="idSubject" multiple="true"/></td>
+                                 itemValue="idSubject" multiple="true" cssClass="form_select"/></td>
             </tr>
 
             <tr>
@@ -52,9 +53,6 @@
             </tr>
         </table>
     </form:form>
-</div>
-<div class="footer">
-    Anastasiia Rudyk
 </div>
 </body>
 </html>
