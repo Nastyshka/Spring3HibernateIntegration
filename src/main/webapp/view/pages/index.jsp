@@ -52,9 +52,9 @@ background-position: center;">
 <c:if test="${not empty hp.groups}">
     <form:label path="group">Групи</form:label>
     <form:select path="group" type="text" items="${hp.groups}" itemLabel="nameGroup" itemValue="idStudentGroup"
-                 multiple="false" title=""/>
+                 multiple="false" title="" cssClass="form_button"/>
 </c:if>
-<input type="submit" value="Знайти" name="submit">
+<input type="submit" value="Знайти" name="submit" class="form_button">
 
 <table class="table1">
 <thead>

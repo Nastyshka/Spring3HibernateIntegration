@@ -65,7 +65,7 @@
             </td>
         </tr>
     </table>
-    <input type="submit" value="Зберегти"/>
+    <input type="submit" value="Зберегти" class="form_button"/>
 </form:form>
     </div>
 <div class="footer">

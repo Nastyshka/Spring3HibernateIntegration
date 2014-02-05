@@ -193,7 +193,7 @@ public class ScheduleController {
 
     @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
     public String logout(ModelMap model) {
-        return "/view/pages/logout.jsp";
+        return "/home.do";
     }
 
     @RequestMapping(value="/loginfailed.do", method = RequestMethod.GET)

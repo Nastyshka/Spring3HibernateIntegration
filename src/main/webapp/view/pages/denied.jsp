@@ -2,18 +2,18 @@
 <html>
 <body>
 
-<h1 id="banner">Unauthorized Access !!</h1>
+<h1 id="banner">Неавторизований доступ</h1>
 
 <hr />
 
 <c:if test="${not empty error}">
     <div style="color:red">
-        Your fake login attempt was bursted, dare again !!<br />
-        Caused : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+        Ви ввели не правильний логін або пароль<br />
+        <%--Caused : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}--%>
     </div>
 </c:if>
 
-<p class="message">Access denied!</p>
-<a href="/timetable/login.do">Go back to login page</a>
+<p class="message">Немає доступу</p>
+<a href="/timetable/login.do">Повернутись на сторінку авторизації</a>
 </body>
 </html>

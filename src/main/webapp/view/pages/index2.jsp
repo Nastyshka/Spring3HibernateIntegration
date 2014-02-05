@@ -57,7 +57,7 @@ background-position: center;">
         <form:select path="teacher" type="text" items="${hp.teachers}" itemLabel="nameUser" itemValue="idTeacher" multiple="false" title=""/>
     </c:if>
 
-    <input type="submit" value="Знайти">
+    <input type="submit" value="Знайти" class="form_button">
     <table class="table1">
     <thead>
     <tr>

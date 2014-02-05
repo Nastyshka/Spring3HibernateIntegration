@@ -50,7 +50,7 @@
                     </c:if>
 
                     <form action="/timetable/profileSubject.do" method="get">
-                        <input type="submit" value="Додати"/>
+                        <input type="submit" value="Додати" class="form_button"/>
                     </form>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     </c:if>
 
                     <form:form action="/timetable/profileGroup.do" method="get">
-                        <input type="submit" value="Додати"/>
+                        <input type="submit" value="Додати" class="form_button"/>
                     </form:form>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     </c:if>
 
                     <form action="/timetable/profileClassroom.do" method="GET">
-                        <input type="submit" value="Додати"/>
+                        <input type="submit" value="Додати" class="form_button"/>
                     </form>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                         <c:out value="Немає даних про викладачів"/>
                     </c:if>
                     <form:form action="/timetable/profileTeacher.do" method="get">
-                        <input type="submit" value="Додати"/>
+                        <input type="submit" value="Додати" class="form_button"/>
                     </form:form>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                         <c:out value="Немає даних про розклад"/>
                     </c:if>
                     <form:form action="/timetable/profileTimeslot.do" method="get">
-                        <input type="submit" value="Додати"/>
+                        <input type="submit" value="Додати" class="form_button"/>
                     </form:form>
                 </div>
             </div>
@@ -166,7 +166,7 @@
     <div>
         <form:form action="/timetable/generate.do" method="get">
             <br/>
-            <input type="submit" value="Розклад"/>
+            <input type="submit" value="Розклад" class="form_button"/>
         </form:form>
     </div>
 </div>

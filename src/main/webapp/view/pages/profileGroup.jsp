@@ -7,8 +7,6 @@
 <head>
     <title>Timetable</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="description" content="Pimp your tables with CSS3"/>
-    <meta name="keywords" content="table, css3, style, beautiful, fancy, css"/>
     <style>
         <%@ include file="/view/css/tableStyle.css"%>
         <%@include file="/view/css/index.css" %>
@@ -49,7 +47,7 @@
 
             <tr>
                 <td colspan="2">
-                    <input type="submit" value="Зберегти зміни"/>
+                    <input type="submit" value="Зберегти зміни" class="form_button"/>
                 </td>
             </tr>
         </table>

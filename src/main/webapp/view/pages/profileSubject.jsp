@@ -59,7 +59,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Зберегти предмет"/>
+                <input type="submit" value="Зберегти" class="form_button"/>
             </td>
         </tr>
     </table>
